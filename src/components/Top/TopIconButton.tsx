@@ -17,7 +17,7 @@ const TopIconButton = ({
 
   return (
     <button
-      className="border-2 border-blue-200 bg-blue-100 rounded-xl w-1/5 p-4 mb-8 items-center
+      className="border-2 border-blue-200 bg-blue-100 rounded-xl w-1/2 p-4 m-4 items-center shadow-xl
   flex items-centertransition-transform duration-300 ease-in-out transform  hover:scale-110"
       onClick={hundleClick}
     >

@@ -10,8 +10,10 @@ const App = ({ Component, pageProps }: AppProps) => (
       <title />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <Header />
-    <Component {...pageProps} />
+    <div className="bg-gray-100">
+      <Header />
+      <Component {...pageProps} />
+    </div>
   </>
 );
 

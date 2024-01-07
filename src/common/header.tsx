@@ -4,7 +4,7 @@ import { MdClose, MdEventSeat } from "react-icons/md";
 import Sidebar from "./sidebar";
 
 const Header = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const openNavFunction = () => {
     setOpen(!open);
   };
