@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose, MdEventSeat } from "react-icons/md";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 
 const Header = () => {
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import Header from "../common/header";
+import Header from "../common/Header";
 import "../globals.css";
 
 import { AppProps } from "next/app";
@@ -12,7 +12,9 @@ const App = ({ Component, pageProps }: AppProps) => (
     </Head>
     <div className="bg-gray-100">
       <Header />
-      <Component {...pageProps} />
+      <div className="flex flex-col items-center justify-center h-screen">
+        <Component {...pageProps} />
+      </div>
     </div>
   </>
 );
