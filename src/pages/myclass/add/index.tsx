@@ -6,7 +6,7 @@ const MyClassAdd = () => {
     <input
       type="number"
       name="seatNumber1"
-      className="border-2"
+      className="border-2 rounded-md"
       placeholder="座席数(1列目)"
       min={1}
     />
@@ -20,7 +20,7 @@ const MyClassAdd = () => {
       <input
         type="number"
         name={`seatNumber${inputCount}`}
-        className="border-2"
+        className="border-2 rounded-md"
         placeholder={`座席数(${inputCount}列目)`}
         min={1}
       />
@@ -48,7 +48,7 @@ const MyClassAdd = () => {
               placeholder="クラス名"
               maxLength={10}
               size={20}
-              className="border-2"
+              className="border-2 rounded-md"
             />
           </div>
           <div className="p-2">
@@ -59,7 +59,7 @@ const MyClassAdd = () => {
               placeholder="タイトル"
               maxLength={20}
               size={40}
-              className="border-2"
+              className="border-2 rounded-md"
             />
           </div>
           <div className="p-2">

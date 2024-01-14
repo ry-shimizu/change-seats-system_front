@@ -22,6 +22,7 @@ const ClassList = ({
         title={classLabel.title}
         studentNum={classLabel.studentNum}
         lastUpdate={classLabel.lastUpdate}
+        isOtherClassAddFlg={false}
       />
     );
   });

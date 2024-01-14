@@ -10,9 +10,9 @@ const OtherClass = () => {
     },
     {
       classNum: "3-2",
-      title: "他人Bの副担クラス",
-      studentNum: 39,
-      lastUpdate: "2023年2月23日",
+      title: "他人",
+      studentNum: 38,
+      lastUpdate: "2023年12月23日",
     },
     {
       classNum: "1-2",
