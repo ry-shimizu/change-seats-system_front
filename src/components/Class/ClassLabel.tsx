@@ -1,25 +1,37 @@
+import { useRouter } from "next/router";
 import { IoIosTimer } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 
 const ClassLabel = ({
+  classId,
   classNum,
   title,
   studentNum,
   lastUpdate,
   isOtherClassAddFlg,
 }: {
+  classId: number;
   classNum: string;
   title: string;
   studentNum: number;
   lastUpdate: string;
   isOtherClassAddFlg: boolean;
 }) => {
+  const router = useRouter();
+
+  const handleClick = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const path = isOtherClassAddFlg ? "otherclass" : "myclass";
+    router.push("/" + path + "/detail/" + classId);
+  };
+
   return (
-    <div
+    <button
       className={`border-2 border-gray-200 bg-gray-100 rounded-md w-11/12 m-4 items-center shadow-xl
 flex transition-transform duration-300 ease-in-out transform hover:scale-105 ${
         isOtherClassAddFlg || "p-2"
       }`}
+      onClick={handleClick}
     >
       <span className={`${isOtherClassAddFlg ? "p-2" : "p-4 text-2xl font-bold"}`}>{classNum}</span>
       <span className={`${isOtherClassAddFlg ? "p-2" : "text-xl font-semibold p-4"}`}>{title}</span>
@@ -33,7 +45,7 @@ flex transition-transform duration-300 ease-in-out transform hover:scale-105 ${
           <div className="pl-1">{lastUpdate}</div>
         </span>
       </span>
-    </div>
+    </button>
   );
 };
 

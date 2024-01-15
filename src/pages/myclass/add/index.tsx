@@ -41,11 +41,22 @@ const MyClassAdd = () => {
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
           <div className="p-2">
-            <h3>Class name</h3>
+            <h3>Year</h3>
+            <input
+              type="number"
+              name="year"
+              placeholder="年度"
+              className="border-2 rounded-md"
+              min={2023}
+              max={9999}
+            />
+          </div>
+          <div className="p-2">
+            <h3>Class</h3>
             <input
               type="text"
               name="className"
-              placeholder="クラス名"
+              placeholder="クラス"
               maxLength={10}
               size={20}
               className="border-2 rounded-md"

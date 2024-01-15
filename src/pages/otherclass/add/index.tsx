@@ -4,30 +4,35 @@ import ClassLabel from "@/components/Class/ClassLabel";
 const OtherClassAdd = () => {
   const classLabelList = [
     {
+      classId: 7,
       classNum: "3-1",
       title: "僕の担任クラス",
       studentNum: 38,
       lastUpdate: "2023年12月23日",
     },
     {
+      classId: 8,
       classNum: "3-5",
       title: "僕の担任クラス",
       studentNum: 5,
       lastUpdate: "2023年04月23日",
     },
     {
+      classId: 9,
       classNum: "2-2",
       title: "週末うううう12文字最大",
       studentNum: 38,
       lastUpdate: "2023年10月23日",
     },
     {
+      classId: 10,
       classNum: "2-2",
       title: "週末うううう12文字最大",
       studentNum: 38,
       lastUpdate: "2023年10月23日",
     },
     {
+      classId: 11,
       classNum: "2-2",
       title: "週末うううう12文字最大",
       studentNum: 38,
@@ -38,6 +43,7 @@ const OtherClassAdd = () => {
   const classLabelElement = classLabelList.map((classLabel) => {
     return (
       <ClassLabel
+        classId={classLabel.classId}
         classNum={classLabel.classNum}
         title={classLabel.title}
         studentNum={classLabel.studentNum}

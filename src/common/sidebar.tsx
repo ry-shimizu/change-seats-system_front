@@ -7,7 +7,7 @@ import { PiChalkboardTeacherFill, PiChalkboardTeacherLight } from "react-icons/p
 
 const Sidebar = () => {
   return (
-    <nav className="h-screen w-1/6 bg-gray-200 fixed top-16 left-0 ">
+    <nav className="h-screen w-1/6 bg-gray-200 fixed top-16 left-0">
       <ul className="text-gray-600 m-auto">
         <div className="mt-16">
           <SideBarLink IconItem={FaHome} item="Home" path="/" />

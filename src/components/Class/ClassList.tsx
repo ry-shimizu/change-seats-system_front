@@ -7,6 +7,7 @@ const ClassList = ({
   path,
 }: {
   classLabelList: {
+    classId: number;
     classNum: string;
     title: string;
     studentNum: number;
@@ -18,6 +19,7 @@ const ClassList = ({
   const classLabelElement = classLabelList.map((classLabel) => {
     return (
       <ClassLabel
+        classId={classLabel.classId}
         classNum={classLabel.classNum}
         title={classLabel.title}
         studentNum={classLabel.studentNum}
