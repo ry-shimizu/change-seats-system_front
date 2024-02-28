@@ -1,11 +1,11 @@
-import SideBarLink from "@/components/Top/SidebarLink";
+import SideBarLink from "@/app/components/Top/SidebarLink";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { PiChalkboardTeacherFill, PiChalkboardTeacherLight } from "react-icons/pi";
 
-const Sidebar = () => {
+export default function Sidebar() {
   return (
     <nav className="h-screen w-1/6 bg-gray-200 fixed top-16 left-0">
       <ul className="text-gray-600 m-auto">
@@ -25,6 +25,4 @@ const Sidebar = () => {
       </ul>
     </nav>
   );
-};
-
-export default Sidebar;
+}

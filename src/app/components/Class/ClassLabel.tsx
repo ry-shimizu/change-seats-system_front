@@ -1,8 +1,9 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { IoIosTimer } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 
-const ClassLabel = ({
+export default function ClassLabel({
   classId,
   classNum,
   title,
@@ -16,7 +17,7 @@ const ClassLabel = ({
   studentNum: number;
   lastUpdate: string;
   isOtherClassAddFlg: boolean;
-}) => {
+}) {
   const router = useRouter();
 
   const handleClick = (e: { preventDefault: () => void }) => {
@@ -47,6 +48,4 @@ flex transition-transform duration-300 ease-in-out transform hover:scale-105 ${
       </span>
     </button>
   );
-};
-
-export default ClassLabel;
+}

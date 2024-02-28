@@ -1,9 +1,10 @@
+"use client";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose, MdEventSeat } from "react-icons/md";
 import Sidebar from "./Sidebar";
 
-const Header = () => {
+export default function Header() {
   const [open, setOpen] = useState(false);
   const openNavFunction = () => {
     setOpen(!open);
@@ -25,6 +26,4 @@ const Header = () => {
       {open && <Sidebar />}
     </>
   );
-};
-
-export default Header;
+}

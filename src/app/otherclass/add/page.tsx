@@ -1,7 +1,7 @@
-import Button from "@/common/Button";
-import ClassLabel from "@/components/Class/ClassLabel";
+import Button from "@/app/common/Button";
+import ClassLabel from "@/app/components/Class/ClassLabel";
 
-const OtherClassAdd = () => {
+export default function OtherClassAdd() {
   const classLabelList = [
     {
       classId: 7,
@@ -54,7 +54,7 @@ const OtherClassAdd = () => {
   });
 
   return (
-    <div className="w-1/2 overflow-y-scroll mt-16">
+    <div className="w-1/2 overflow-y-auto mt-16">
       <h2 className="font-serif text-4xl mb-2">Other classes Add</h2>
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
@@ -100,5 +100,4 @@ const OtherClassAdd = () => {
       <div className="bg-white rounded-xl w-full p-2">{classLabelElement}</div>
     </div>
   );
-};
-export default OtherClassAdd;
+}

@@ -1,6 +1,6 @@
-import ClassList from "@/components/Class/ClassList";
+import ClassList from "@/app/components/Class/ClassList";
 
-const MyClass = () => {
+export default function MyClass() {
   const classLabelList = [
     {
       classId: 1,
@@ -26,6 +26,4 @@ const MyClass = () => {
   ];
 
   return <ClassList classLabelList={classLabelList} pageTitle="My classes" path="myclass" />;
-};
-
-export default MyClass;
+}

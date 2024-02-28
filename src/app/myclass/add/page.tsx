@@ -1,7 +1,8 @@
-import Button from "@/common/Button";
+"use client";
+import Button from "@/app/common/Button";
 import { useState } from "react";
 
-const MyClassAdd = () => {
+export default function MyClassAdd() {
   const intialInputElement = (
     <input
       type="number"
@@ -36,7 +37,7 @@ const MyClassAdd = () => {
   };
 
   return (
-    <div className="w-1/2 overflow-y-scroll mt-16">
+    <div className="w-1/2 overflow-y-auto mt-16">
       <h2 className="font-serif text-4xl mb-2">My classes Add</h2>
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
@@ -111,6 +112,4 @@ const MyClassAdd = () => {
       </div>
     </div>
   );
-};
-
-export default MyClassAdd;
+}

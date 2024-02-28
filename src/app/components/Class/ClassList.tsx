@@ -1,7 +1,7 @@
-import ClassLabel from "@/components/Class/ClassLabel";
+import ClassLabel from "@/app/components/Class/ClassLabel";
 import Link from "next/link";
 
-const ClassList = ({
+export default function ClassList({
   classLabelList,
   pageTitle,
   path,
@@ -15,7 +15,7 @@ const ClassList = ({
   }[];
   pageTitle: string;
   path: string;
-}) => {
+}) {
   const classLabelElement = classLabelList.map((classLabel) => {
     return (
       <ClassLabel
@@ -43,6 +43,4 @@ const ClassList = ({
       </div>
     </div>
   );
-};
-
-export default ClassList;
+}

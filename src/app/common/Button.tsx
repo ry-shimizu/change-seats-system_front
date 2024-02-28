@@ -1,4 +1,4 @@
-const Button = ({ color, message }: { color: string; message: string }) => {
+export default function Button({ color, message }: { color: string; message: string }) {
   return (
     <div className="justify-end flex px-6">
       <button
@@ -8,6 +8,4 @@ const Button = ({ color, message }: { color: string; message: string }) => {
       </button>
     </div>
   );
-};
-
-export default Button;
+}
