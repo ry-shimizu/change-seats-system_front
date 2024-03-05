@@ -1,3 +1,7 @@
+import Button from "@/app/components/Button";
+import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
+import Seat from "@/app/components/ClassDetail/Seat";
+
 export default function OtherClassDetail() {
   const seatInfos = [
     {
@@ -8,11 +12,19 @@ export default function OtherClassDetail() {
           seatId: 1,
           stundetId: 1,
           studentName: "秋田",
+          sexType: 1,
         },
         {
           seatId: 2,
           stundetId: 2,
           studentName: "池田",
+          sexType: 1,
+        },
+        {
+          seatId: 3,
+          stundetId: 3,
+          studentName: "牛田",
+          sexType: 2,
         },
       ],
     },
@@ -24,11 +36,13 @@ export default function OtherClassDetail() {
           seatId: 3,
           stundetId: 3,
           studentName: "牛田",
+          sexType: 1,
         },
         {
           seatId: 4,
           stundetId: 5,
           studentName: "清水",
+          sexType: 1,
         },
       ],
     },
@@ -40,38 +54,81 @@ export default function OtherClassDetail() {
           seatId: 5,
           stundetId: 5,
           studentName: "中大兄皇子真",
+          sexType: 1,
         },
         {
           seatId: 6,
           stundetId: 6,
           studentName: "吉村",
+          sexType: 2,
+        },
+      ],
+    },
+    {
+      col: 4,
+      seatNum: 2,
+      seatDetails: [
+        {
+          seatId: 5,
+          stundetId: 5,
+          studentName: "中大兄皇子真",
+          sexType: 1,
+        },
+        {
+          seatId: 6,
+          stundetId: 6,
+          studentName: "吉村",
+          sexType: 1,
+        },
+      ],
+    },
+    {
+      col: 5,
+      seatNum: 2,
+      seatDetails: [
+        {
+          seatId: 5,
+          stundetId: 5,
+          studentName: "中大兄皇子真",
+          sexType: 1,
+        },
+        {
+          seatId: 6,
+          stundetId: 6,
+          studentName: "吉村",
+          sexType: 1,
+        },
+      ],
+    },
+    {
+      col: 6,
+      seatNum: 2,
+      seatDetails: [
+        {
+          seatId: 5,
+          stundetId: 5,
+          studentName: "中大兄皇子真",
+          sexType: 1,
+        },
+        {
+          seatId: 6,
+          stundetId: 6,
+          studentName: "吉村",
+          sexType: 2,
         },
       ],
     },
   ];
 
-  const seatElement = seatInfos.map((seatInfo) => {
-    return (
-      <div className="flex flex-col m-1">
-        {seatInfo.seatDetails.map((seatDetail) => {
-          return (
-            <div className="aspect-square border border-black m-1 p-1 items-center justify-center flex flex-col ">
-              {seatDetail.studentName}
-            </div>
-          );
-        })}
-      </div>
-    );
-  });
-
   return (
-    <div className="w-1/2 overflow-y-scroll mt-16">
+    <div className="w-1/2 overflow-y-auto mt-16">
       <h2 className="font-serif text-4xl mb-2">Other classes Detail</h2>
       <div className="bg-white rounded-xl w-full p-4 ">
-        <h3 className="text-lg mb-2">3-1 タイトル</h3>
-        <div className="flex justify-center items-center flex-col">
-          <div className="border border-black p-2 m-3 text-center w-1/6 ">教卓</div>
-          <div className="flex">{seatElement}</div>
+        <BlackBoard title="他クラステスト" className="3-1">
+          <Seat seatInfos={seatInfos} />
+        </BlackBoard>
+        <div className="mt-5">
+          <Button color="blue" message="Regist" px={6} />
         </div>
       </div>
     </div>

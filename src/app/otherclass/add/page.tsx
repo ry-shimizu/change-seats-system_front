@@ -1,4 +1,4 @@
-import Button from "@/app/common/Button";
+import Button from "@/app/components/Button";
 import ClassLabel from "@/app/components/Class/ClassLabel";
 
 export default function OtherClassAdd() {
@@ -48,7 +48,7 @@ export default function OtherClassAdd() {
         title={classLabel.title}
         studentNum={classLabel.studentNum}
         lastUpdate={classLabel.lastUpdate}
-        isOtherClassAddFlg={true}
+        isOtherClassFlg={true}
       />
     );
   });
@@ -93,7 +93,7 @@ export default function OtherClassAdd() {
               className="border-2 rounded-md"
             />
           </div>
-          <Button color="blue" message="serch" />
+          <Button color="blue" message="Serch" px={6} />
         </form>
       </div>
       <div className="mt-3">5 classes found</div>

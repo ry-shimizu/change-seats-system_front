@@ -1,4 +1,4 @@
-import SideBarLink from "@/app/components/Top/SidebarLink";
+import SideBarLink from "@/app/components/SidebarLink";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";

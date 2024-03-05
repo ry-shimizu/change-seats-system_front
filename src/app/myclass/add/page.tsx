@@ -1,19 +1,17 @@
 "use client";
-import Button from "@/app/common/Button";
-import { useState } from "react";
+import Button from "@/app/components/Button";
+import { SetStateAction, useState } from "react";
 
 export default function MyClassAdd() {
-  const intialInputElement = (
+  const [seatNum, setSeatNum] = useState([
     <input
       type="number"
       name="seatNumber1"
       className="border-2 rounded-md"
       placeholder="座席数(1列目)"
       min={1}
-    />
-  );
-  const [seatNum, setSeatNum] = useState([intialInputElement]);
-
+    />,
+  ]);
   const handleAddClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const inputCount = seatNum.length + 1;
@@ -34,6 +32,12 @@ export default function MyClassAdd() {
     const updatedSeatNum = [...seatNum];
     updatedSeatNum.pop();
     setSeatNum(updatedSeatNum);
+  };
+
+  const [startSeat, setStartSeat] = useState("right");
+
+  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
+    setStartSeat(e.target.value);
   };
 
   return (
@@ -76,9 +80,21 @@ export default function MyClassAdd() {
           </div>
           <div className="p-2">
             <h3>Seat start point</h3>
-            <input type="radio" name="startPoint" value="right" checked />
+            <input
+              type="radio"
+              name="startPoint"
+              value="right"
+              checked={startSeat === "right"}
+              onChange={handleStartSeatChange}
+            />
             <span className="p-1">Left</span>
-            <input type="radio" name="startPoint" value="left" />
+            <input
+              type="radio"
+              name="startPoint"
+              value="left"
+              checked={startSeat === "left"}
+              onChange={handleStartSeatChange}
+            />
             <span className="p-1">Right</span>
           </div>
           <div className="p-2">
@@ -107,7 +123,7 @@ export default function MyClassAdd() {
             <h3 className="mb-2">Student regist CSV Upload</h3>
             <input type="file" accept="text/csv" />
           </div>
-          <Button color="blue" message="regist" />
+          <Button color="blue" message="Regist" px={6} />
         </form>
       </div>
     </div>
