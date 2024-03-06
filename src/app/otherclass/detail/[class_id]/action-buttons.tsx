@@ -1,9 +1,10 @@
 "use client";
 import Button from "@/app/components/Button";
-import { useState } from "react";
+import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
+import { SetStateAction, useState } from "react";
 import Modal from "react-modal";
 
-export default function ActionButtons() {
+export default function ActionButtons({ startPoint }: { startPoint: number }) {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isChangeOpen, setIsChangepen] = useState(false);
@@ -14,6 +15,11 @@ export default function ActionButtons() {
 
   const handleCloseClick = (setIsOpen: (value: boolean) => void) => {
     setIsOpen(false);
+  };
+
+  const [startSeat, setStartSeat] = useState("right");
+  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
+    setStartSeat(e.target.value);
   };
 
   const customStyles = {
@@ -40,7 +46,52 @@ export default function ActionButtons() {
         onRequestClose={() => handleCloseClick(setIsAddOpen)}
         style={customStyles}
       >
-        <h2>Add！</h2>
+        <BlackBoard></BlackBoard>
+        <form action="">
+          <div className="mb-2">
+            <h3>Add Seat</h3>
+            <input
+              type="radio"
+              name="startPoint"
+              value="right"
+              checked={startSeat === "right"}
+              onChange={handleStartSeatChange}
+            />
+            <span className="p-1">左</span>
+            <input
+              type="radio"
+              name="startPoint"
+              value="left"
+              checked={startSeat === "left"}
+              onChange={handleStartSeatChange}
+            />
+            <span className="p-1">右</span>
+            <span className="p-1">から</span>
+            <input type="number" name="col" className="border-2 rounded-md" min={1} max={100} />
+            <span className="p-1">列目</span>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="startPoint"
+              value="right"
+              checked={startSeat === "right"}
+              onChange={handleStartSeatChange}
+            />
+            <span className="p-1">前</span>
+            <input
+              type="radio"
+              name="startPoint"
+              value="left"
+              checked={startSeat === "left"}
+              onChange={handleStartSeatChange}
+            />
+            <span className="p-1">後</span>
+            <span className="p-1">から</span>
+            <input type="number" name="col" className="border-2 rounded-md" min={1} max={100} />
+            <span className="p-1">列目</span>
+          </div>
+        </form>
         <Button
           color="blue"
           message="Close"

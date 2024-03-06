@@ -3,10 +3,10 @@ import Button from "@/app/components/Button";
 import { SetStateAction, useState } from "react";
 
 export default function MyClassAdd() {
-  const [seatNum, setSeatNum] = useState([
+  const [seatTotal, setseatTotal] = useState([
     <input
       type="number"
-      name="seatNumber1"
+      name="seatTotalber1"
       className="border-2 rounded-md"
       placeholder="座席数(1列目)"
       min={1}
@@ -14,24 +14,24 @@ export default function MyClassAdd() {
   ]);
   const handleAddClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const inputCount = seatNum.length + 1;
+    const inputCount = seatTotal.length + 1;
     const addInputElement = (
       <input
         type="number"
-        name={`seatNumber${inputCount}`}
+        name={`seatTotalber${inputCount}`}
         className="border-2 rounded-md"
         placeholder={`座席数(${inputCount}列目)`}
         min={1}
       />
     );
-    setSeatNum((preValue) => [...preValue, addInputElement]);
+    setseatTotal((preValue) => [...preValue, addInputElement]);
   };
 
   const handleMinusClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const updatedSeatNum = [...seatNum];
-    updatedSeatNum.pop();
-    setSeatNum(updatedSeatNum);
+    const updatedseatTotal = [...seatTotal];
+    updatedseatTotal.pop();
+    setseatTotal(updatedseatTotal);
   };
 
   const [startSeat, setStartSeat] = useState("right");
@@ -99,7 +99,7 @@ export default function MyClassAdd() {
           </div>
           <div className="p-2">
             <h3>Seat number</h3>
-            {seatNum.map((inputElement, index) => (
+            {seatTotal.map((inputElement, index) => (
               <div key={index} className="mb-2">
                 {inputElement}
               </div>
@@ -110,7 +110,7 @@ export default function MyClassAdd() {
             >
               +
             </button>
-            {seatNum.length > 1 && (
+            {seatTotal.length > 1 && (
               <button
                 onClick={handleMinusClick}
                 className="bg-red-500 px-2 border-2 ml-2 border-red-500 rounded-md text-white"

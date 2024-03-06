@@ -3,8 +3,8 @@ export default function Seat({
 }: {
   seatInfos: {
     col: number;
-    seatNum: number;
-    seatDetails: { seatId: number; stundetId: number; studentName: string; sexType: number }[];
+    seatTotal: number;
+    seatDetails: { seatNumber: number; stundetId: number; studentName: string; sexType: number }[];
   }[];
 }) {
   return (

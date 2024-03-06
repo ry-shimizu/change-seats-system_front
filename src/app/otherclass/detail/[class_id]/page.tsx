@@ -6,22 +6,22 @@ export default function OtherClassDetail() {
   const seatInfos = [
     {
       col: 1,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 1,
+          seatNumber: 1,
           stundetId: 1,
           studentName: "秋田",
           sexType: 1,
         },
         {
-          seatId: 2,
+          seatNumber: 2,
           stundetId: 2,
           studentName: "池田",
           sexType: 1,
         },
         {
-          seatId: 3,
+          seatNumber: 3,
           stundetId: 3,
           studentName: "牛田",
           sexType: 2,
@@ -30,16 +30,16 @@ export default function OtherClassDetail() {
     },
     {
       col: 2,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 3,
+          seatNumber: 3,
           stundetId: 3,
           studentName: "牛田",
           sexType: 1,
         },
         {
-          seatId: 4,
+          seatNumber: 4,
           stundetId: 5,
           studentName: "清水",
           sexType: 1,
@@ -48,16 +48,16 @@ export default function OtherClassDetail() {
     },
     {
       col: 3,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 5,
+          seatNumber: 5,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatId: 6,
+          seatNumber: 6,
           stundetId: 6,
           studentName: "吉村",
           sexType: 2,
@@ -66,16 +66,16 @@ export default function OtherClassDetail() {
     },
     {
       col: 4,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 5,
+          seatNumber: 5,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatId: 6,
+          seatNumber: 6,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -84,16 +84,16 @@ export default function OtherClassDetail() {
     },
     {
       col: 5,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 5,
+          seatNumber: 5,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatId: 6,
+          seatNumber: 6,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -102,18 +102,18 @@ export default function OtherClassDetail() {
     },
     {
       col: 6,
-      seatNum: 2,
+      seatTotal: 2,
       seatDetails: [
         {
-          seatId: 5,
+          seatNumber: 5,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatId: 6,
+          seatNumber: 6,
           stundetId: 6,
-          studentName: "吉村",
+          studentName: "吉村さえ",
           sexType: 2,
         },
       ],
