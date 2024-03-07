@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/app/components/Button";
-import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import { SetStateAction, useState } from "react";
 import Modal from "react-modal";
 
@@ -17,20 +16,20 @@ export default function ActionButtons({ startPoint }: { startPoint: number }) {
     setIsOpen(false);
   };
 
-  const [startSeat, setStartSeat] = useState("right");
-  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setStartSeat(e.target.value);
+  const [sexType, setSexType] = useState(1);
+  const handleSexType = (e: { target: { value: SetStateAction<string> } }) => {
+    setSexType(Number(e.target.value));
   };
 
   const customStyles = {
     content: {
-      top: "20%",
+      top: "45%",
       left: "50%",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      minWidth: "50%",
+      minWidth: "30%",
     },
     overlay: {
       backgroundColor: "rgba(128, 128, 128, 0.8)",
@@ -39,73 +38,61 @@ export default function ActionButtons({ startPoint }: { startPoint: number }) {
 
   return (
     <div className="mt-5 flex justify-end">
+      {/* add ----------------------------------------------------------------- */}
       <Button color="blue" message="Add" px={2} handleClick={() => handleOpenClick(setIsAddOpen)} />
+
       <Modal
         isOpen={isAddOpen}
         contentLabel="test"
         onRequestClose={() => handleCloseClick(setIsAddOpen)}
         style={customStyles}
       >
-        <BlackBoard></BlackBoard>
-        <form action="">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">Seat Add</h2>
+        <form action="" className="mt-2">
           <div className="mb-2">
-            <h3>Add Seat</h3>
-            <input
-              type="radio"
-              name="startPoint"
-              value="right"
-              checked={startSeat === "right"}
-              onChange={handleStartSeatChange}
-            />
-            <span className="p-1">左</span>
-            <input
-              type="radio"
-              name="startPoint"
-              value="left"
-              checked={startSeat === "left"}
-              onChange={handleStartSeatChange}
-            />
-            <span className="p-1">右</span>
-            <span className="p-1">から</span>
-            <input type="number" name="col" className="border-2 rounded-md" min={1} max={100} />
-            <span className="p-1">列目</span>
+            <div className="p-2">
+              <h3>■Seat Number</h3>
+              <input type="number" name="col" className="border-2 rounded-md" min={1} max={1000} />
+              <span className="p-1">番</span>
+            </div>
           </div>
-          <div>
+
+          <div className="p-2">
+            <h3>■Student Name (first name)</h3>
+            <input
+              type="text"
+              name="studentName"
+              placeholder="生徒名"
+              maxLength={6}
+              size={20}
+              className="border-2 rounded-md"
+            />
+          </div>
+          <div className="p-2">
+            <h3>■Sex Type</h3>
             <input
               type="radio"
-              name="startPoint"
-              value="right"
-              checked={startSeat === "right"}
-              onChange={handleStartSeatChange}
+              name="sexType"
+              value={1}
+              checked={sexType === 1}
+              onChange={handleSexType}
             />
-            <span className="p-1">前</span>
+            <span className="p-1">男性</span>
             <input
               type="radio"
-              name="startPoint"
-              value="left"
-              checked={startSeat === "left"}
-              onChange={handleStartSeatChange}
+              name="sexType"
+              value={2}
+              checked={sexType === 2}
+              onChange={handleSexType}
             />
-            <span className="p-1">後</span>
-            <span className="p-1">から</span>
-            <input type="number" name="col" className="border-2 rounded-md" min={1} max={100} />
-            <span className="p-1">列目</span>
+            <span className="p-1">女性</span>
           </div>
         </form>
-        <Button
-          color="blue"
-          message="Close"
-          px={2}
-          handleClick={() => handleCloseClick(setIsAddOpen)}
-        />
+        <Button color="blue" message="Save" px={2} />
       </Modal>
 
-      <Button
-        color="red"
-        message="Delete"
-        px={2}
-        handleClick={() => handleOpenClick(setIsDeleteOpen)}
-      />
+      {/* delete-----------------------------------------------------------------  */}
+      <Button color="red" message="Delete" px={2} />
       <Modal
         isOpen={isDeleteOpen}
         contentLabel="test"
@@ -121,6 +108,7 @@ export default function ActionButtons({ startPoint }: { startPoint: number }) {
         />
       </Modal>
 
+      {/* change-----------------------------------------------------------------  */}
       <Button
         color="emerald"
         message="Change"
