@@ -18,16 +18,17 @@ export default function Seat({
         return (
           <div className="flex items-center m-2 flex-col-reverse">
             {seatInfo.seatDetails.map((seatDetail, index) => {
-              const seatComboNum = String(seatInfo.col) + String(seatDetail.seatNumber);
               return (
                 <div
                   className={`${
                     seatDetail.sexType === 1 ? "bg-blue-100/90" : "bg-red-100/90"
                   } aspect-square w-12 h-12 border border-white m-2 p-1 items-center justify-center flex flex-col text-xs shadow-xl rounded-md`}
-                  onMouseEnter={() => setHover(seatComboNum)}
+                  onMouseEnter={() => setHover(String(seatDetail.seatNumber))}
                   onMouseLeave={() => setHover("")}
                 >
-                  {hover === seatComboNum ? seatComboNum : seatDetail.studentName}
+                  {hover === String(seatDetail.seatNumber)
+                    ? String(seatDetail.seatNumber)
+                    : seatDetail.studentName}
                 </div>
               );
             })}

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose, MdEventSeat } from "react-icons/md";
@@ -19,7 +20,9 @@ export default function Header() {
         <div className="container mx-auto">
           <div className="text-2xl font-bold flex">
             <MdEventSeat size="2rem" />
-            <div className="ml-1">Change Seats System Manager</div>
+            <Link className="ml-1" href={"/"}>
+              Change Seats System Manager
+            </Link>
           </div>
         </div>
       </header>

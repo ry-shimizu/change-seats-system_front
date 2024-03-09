@@ -1,6 +1,6 @@
 import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
-import ActionButtons from "@/app/otherclass/detail/[class_id]/action-buttons";
+import ActionButtons from "@/app/myclass/detail/[class_id]/ActionButtons";
 
 export default function MyclassDetail() {
   const startPoint = 1;
@@ -10,19 +10,19 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 1,
+          seatNumber: 11, // col + seatNum
           stundetId: 1,
           studentName: "秋田",
           sexType: 1,
         },
         {
-          seatNumber: 2,
+          seatNumber: 12,
           stundetId: 2,
           studentName: "池田",
           sexType: 1,
         },
         {
-          seatNumber: 3,
+          seatNumber: 13,
           stundetId: 3,
           studentName: "牛田",
           sexType: 2,
@@ -34,13 +34,13 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 3,
+          seatNumber: 21,
           stundetId: 3,
           studentName: "牛田",
           sexType: 1,
         },
         {
-          seatNumber: 4,
+          seatNumber: 22,
           stundetId: 5,
           studentName: "清水",
           sexType: 1,
@@ -52,13 +52,13 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 5,
+          seatNumber: 31,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatNumber: 6,
+          seatNumber: 32,
           stundetId: 6,
           studentName: "吉村",
           sexType: 2,
@@ -70,13 +70,13 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 5,
+          seatNumber: 41,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatNumber: 6,
+          seatNumber: 42,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -88,13 +88,13 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 5,
+          seatNumber: 51,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatNumber: 6,
+          seatNumber: 52,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -106,13 +106,13 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 5,
+          seatNumber: 61,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
-          seatNumber: 6,
+          seatNumber: 62,
           stundetId: 6,
           studentName: "吉村",
           sexType: 2,
@@ -128,7 +128,7 @@ export default function MyclassDetail() {
         <BlackBoard title="マイクラステスト" className="3-1">
           <Seat seatInfos={seatInfos} />
         </BlackBoard>
-        <ActionButtons startPoint={startPoint} />
+        <ActionButtons startPoint={startPoint} seatInfos={seatInfos} />
       </div>
     </div>
   );
