@@ -52,7 +52,7 @@ export default function ActionButtons({
         onRequestClose={() => handleCloseClick(setIsAddOpen)}
         style={customStyles}
       >
-        <AddContent />
+        <AddContent seatInfos={seatInfos} />
       </Modal>
 
       <Button

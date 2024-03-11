@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/app/components/Button";
-import { useState } from "react";
 
 export default function DeleteContent({
   seatInfos,
@@ -11,19 +10,15 @@ export default function DeleteContent({
     seatDetails: { seatNumber: number; stundetId: number; studentName: string; sexType: number }[];
   }[];
 }) {
-  const [displayName, setDisplayName] = useState("　");
-  const handleOnChange = (value: string) => {
-    const displaySeatInfo = seatInfos
-      .map((seatInfo) =>
-        seatInfo.seatDetails.find((seatDetail) => String(seatDetail.seatNumber) === value)
-      )
-      .filter((seatDetail) => seatDetail !== undefined);
-    if (displaySeatInfo[0]?.studentName) {
-      setDisplayName(displaySeatInfo[0]?.studentName);
-    } else {
-      setDisplayName("　");
-    }
-  };
+  const deletePullDown = seatInfos.flatMap((seatInfo) => {
+    return seatInfo.seatDetails.map((seatDetail) => {
+      return (
+        <option value={String(seatDetail.seatNumber)}>
+          {String(seatDetail.seatNumber) + ":" + seatDetail.studentName}
+        </option>
+      );
+    });
+  });
 
   return (
     <>
@@ -31,18 +26,16 @@ export default function DeleteContent({
       <form action="" className="mt-2">
         <div className="mb-2">
           <div className="p-2">
-            <h3>■Seat Number</h3>
-            <input
-              type="number"
-              name="col"
-              className="border-2 rounded-md"
-              min={1}
-              max={1000}
-              onChange={(e) => handleOnChange(e.target.value)}
-            />
-            <span className="p-1">番</span>
+            <h3>■Slect a Seat Number</h3>
+            <select
+              id="deleteSeatNum"
+              name="deleteSeatNum"
+              className="block appearance-none w-1/2 bg-white border border-gray-300 hover:border-gray-500 mt-1 p-1 rounded shadow leading-tight focus:outline-none focus:shadow-outline overflow-y-auto"
+            >
+              <option>選択してください ▼</option>
+              {deletePullDown}
+            </select>
           </div>
-          <div className="text-sm p-2">生徒名：{displayName} </div>
         </div>
       </form>
       <Button color="red" message="Delete" px={2} />
