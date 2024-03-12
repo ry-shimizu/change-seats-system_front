@@ -86,7 +86,7 @@ export default function User() {
               </label>
             </div>
           </div>
-          <Button color="blue" message="Serch" px={6} />
+          <Button color="blue" message="Serch" paddingXNum={6} justifyEnd />
         </form>
       </div>
       <div className="mt-2 justify-end flex">

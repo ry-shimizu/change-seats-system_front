@@ -14,7 +14,13 @@ export default function ActionButtons({
   seatInfos: {
     col: number;
     seatTotal: number;
-    seatDetails: { seatNumber: number; stundetId: number; studentName: string; sexType: number }[];
+    seatDetails: {
+      seatNumber: number;
+      stundetId: number;
+      studentName: string;
+      sexType: number;
+      seatLine: number;
+    }[];
   }[];
 }) {
   const [isAddOpen, setIsAddOpen] = useState(false);
@@ -38,6 +44,7 @@ export default function ActionButtons({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       minWidth: "30%",
+      maxHeight: "70vh",
     },
     overlay: {
       backgroundColor: "rgba(128, 128, 128, 0.8)",
@@ -46,7 +53,12 @@ export default function ActionButtons({
 
   return (
     <div className="mt-5 flex justify-end">
-      <Button color="blue" message="Add" px={2} handleClick={() => handleOpenClick(setIsAddOpen)} />
+      <Button
+        color="blue"
+        message="Add"
+        paddingXNum={2}
+        handleClick={() => handleOpenClick(setIsAddOpen)}
+      />
       <Modal
         isOpen={isAddOpen}
         onRequestClose={() => handleCloseClick(setIsAddOpen)}
@@ -58,7 +70,7 @@ export default function ActionButtons({
       <Button
         color="red"
         message="Delete"
-        px={2}
+        paddingXNum={2}
         handleClick={() => handleOpenClick(setIsDeleteOpen)}
       />
       <Modal
@@ -73,7 +85,7 @@ export default function ActionButtons({
       <Button
         color="green"
         message="Change"
-        px={2}
+        paddingXNum={2}
         handleClick={() => handleOpenClick(setIsChangepen)}
       />
       <Modal

@@ -10,19 +10,22 @@ export default function MyclassDetail() {
       seatTotal: 2,
       seatDetails: [
         {
-          seatNumber: 11, // col + seatNum
+          seatNumber: 11, // col + seatLine
+          seatLine: 1,
           stundetId: 1,
           studentName: "秋田",
           sexType: 1,
         },
         {
           seatNumber: 12,
+          seatLine: 2,
           stundetId: 2,
           studentName: "池田",
           sexType: 1,
         },
         {
           seatNumber: 13,
+          seatLine: 3,
           stundetId: 3,
           studentName: "牛田",
           sexType: 2,
@@ -35,12 +38,14 @@ export default function MyclassDetail() {
       seatDetails: [
         {
           seatNumber: 21,
+          seatLine: 1,
           stundetId: 3,
           studentName: "牛田",
           sexType: 1,
         },
         {
           seatNumber: 22,
+          seatLine: 2,
           stundetId: 5,
           studentName: "清水",
           sexType: 1,
@@ -53,12 +58,14 @@ export default function MyclassDetail() {
       seatDetails: [
         {
           seatNumber: 31,
+          seatLine: 1,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
           seatNumber: 32,
+          seatLine: 2,
           stundetId: 6,
           studentName: "吉村",
           sexType: 2,
@@ -71,12 +78,14 @@ export default function MyclassDetail() {
       seatDetails: [
         {
           seatNumber: 41,
+          seatLine: 1,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
           seatNumber: 42,
+          seatLine: 2,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -89,12 +98,14 @@ export default function MyclassDetail() {
       seatDetails: [
         {
           seatNumber: 51,
+          seatLine: 1,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
           seatNumber: 52,
+          seatLine: 2,
           stundetId: 6,
           studentName: "吉村",
           sexType: 1,
@@ -107,12 +118,14 @@ export default function MyclassDetail() {
       seatDetails: [
         {
           seatNumber: 61,
+          seatLine: 1,
           stundetId: 5,
           studentName: "中大兄皇子真",
           sexType: 1,
         },
         {
           seatNumber: 62,
+          seatLine: 2,
           stundetId: 6,
           studentName: "吉村",
           sexType: 2,

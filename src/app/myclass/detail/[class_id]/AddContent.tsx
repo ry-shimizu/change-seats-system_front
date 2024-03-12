@@ -9,7 +9,13 @@ export default function AddContent({
   seatInfos: {
     col: number;
     seatTotal: number;
-    seatDetails: { seatNumber: number; stundetId: number; studentName: string; sexType: number }[];
+    seatDetails: {
+      seatNumber: number;
+      stundetId: number;
+      studentName: string;
+      sexType: number;
+      seatLine: number;
+    }[];
   }[];
 }) {
   const [sexType, setSexType] = useState(1);
@@ -77,7 +83,7 @@ export default function AddContent({
           </label>
         </div>
       </form>
-      <Button color="blue" message="Save" px={2} />
+      <Button color="blue" message="Save" paddingXNum={2} justifyEnd />
     </>
   );
 }

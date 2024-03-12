@@ -128,7 +128,7 @@ export default function OtherClassDetail() {
           <Seat seatInfos={seatInfos} />
         </BlackBoard>
         <div className="mt-5">
-          <Button color="blue" message="Regist" px={6} />
+          <Button color="blue" message="Regist" paddingXNum={6} justifyEnd />
         </div>
       </div>
     </div>

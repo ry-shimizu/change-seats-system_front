@@ -7,7 +7,13 @@ export default function DeleteContent({
   seatInfos: {
     col: number;
     seatTotal: number;
-    seatDetails: { seatNumber: number; stundetId: number; studentName: string; sexType: number }[];
+    seatDetails: {
+      seatNumber: number;
+      stundetId: number;
+      studentName: string;
+      sexType: number;
+      seatLine: number;
+    }[];
   }[];
 }) {
   const deletePullDown = seatInfos.flatMap((seatInfo) => {
@@ -38,7 +44,7 @@ export default function DeleteContent({
           </div>
         </div>
       </form>
-      <Button color="red" message="Delete" px={2} />
+      <Button color="red" message="Delete" paddingXNum={2} justifyEnd />
     </>
   );
 }

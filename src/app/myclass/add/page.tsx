@@ -12,8 +12,7 @@ export default function MyClassAdd() {
       min={1}
     />,
   ]);
-  const handleAddClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleAddClick = () => {
     const inputCount = seatTotal.length + 1;
     const addInputElement = (
       <input
@@ -27,8 +26,7 @@ export default function MyClassAdd() {
     setseatTotal((preValue) => [...preValue, addInputElement]);
   };
 
-  const handleMinusClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const handleMinusClick = () => {
     const updatedseatTotal = [...seatTotal];
     updatedseatTotal.pop();
     setseatTotal(updatedseatTotal);
@@ -46,7 +44,7 @@ export default function MyClassAdd() {
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
           <div className="p-2">
-            <h3>Year</h3>
+            <h3>■ Year</h3>
             <input
               type="number"
               name="year"
@@ -57,7 +55,7 @@ export default function MyClassAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>Class</h3>
+            <h3>■ Class</h3>
             <input
               type="text"
               name="className"
@@ -68,7 +66,7 @@ export default function MyClassAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>Title</h3>
+            <h3>■ Title</h3>
             <input
               type="text"
               name="title"
@@ -79,7 +77,7 @@ export default function MyClassAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>Seat start point</h3>
+            <h3>■ Seat start point</h3>
             <input
               type="radio"
               name="startPoint"
@@ -98,32 +96,38 @@ export default function MyClassAdd() {
             <span className="p-1">Right</span>
           </div>
           <div className="p-2">
-            <h3>Seat number</h3>
+            <h3>■ Seat number</h3>
             {seatTotal.map((inputElement, index) => (
               <div key={index} className="mb-2">
                 {inputElement}
               </div>
             ))}
-            <button
-              onClick={handleAddClick}
-              className="bg-blue-500 px-2 border-2 ml-2 border-blue-500 rounded-md text-white"
-            >
-              +
-            </button>
-            {seatTotal.length > 1 && (
-              <button
-                onClick={handleMinusClick}
-                className="bg-red-500 px-2 border-2 ml-2 border-red-500 rounded-md text-white"
-              >
-                -
-              </button>
-            )}
+            <div className="flex">
+              <Button
+                color="blue"
+                message="+"
+                handleClick={handleAddClick}
+                paddingXNum={0}
+                px={"2"}
+                py={"0"}
+              />
+              {seatTotal.length > 1 && (
+                <Button
+                  color="red"
+                  message="-"
+                  handleClick={handleMinusClick}
+                  paddingXNum={0}
+                  px={"2"}
+                  py={"0"}
+                />
+              )}
+            </div>
           </div>
           <div className="p-2">
-            <h3 className="mb-2">Student regist CSV Upload</h3>
+            <h3 className="mb-2">■ Student regist CSV Upload</h3>
             <input type="file" accept="text/csv" />
           </div>
-          <Button color="blue" message="Regist" px={6} />
+          <Button color="blue" message="Regist" paddingXNum={6} justifyEnd />
         </form>
       </div>
     </div>

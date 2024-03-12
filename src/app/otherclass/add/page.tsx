@@ -93,7 +93,7 @@ export default function OtherClassAdd() {
               className="border-2 rounded-md"
             />
           </div>
-          <Button color="blue" message="Serch" px={6} />
+          <Button color="blue" message="Serch" paddingXNum={6} justifyEnd />
         </form>
       </div>
       <div className="mt-3">5 classes found</div>
