@@ -10,9 +10,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <body>
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 w-full h-screen">
           <Header />
-          <div className="flex flex-col items-center justify-center h-screen">{children}</div>
+          <div className="relative">
+            <div className="fixed left-1/4 top-32 w-full">{children}</div>
+          </div>
         </div>
       </body>
     </html>

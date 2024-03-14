@@ -2,15 +2,22 @@
 import Button from "@/app/components/Button";
 import { SetStateAction, useState } from "react";
 
-export default function UerAdd() {
-  const [authority, setAuthority] = useState("admin");
+export default function UerDetail() {
+  const userInfo = {
+    userId: 1,
+    userName: "反町 隆",
+    authority: "admin",
+    loginId: "takashi",
+  };
+  const [authority, setAuthority] = useState(userInfo.authority);
 
   const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
     setAuthority(e.target.value);
   };
+
   return (
     <div className="w-1/3 overflow-y-auto">
-      <h2 className="font-serif text-4xl mb-2">User Add</h2>
+      <h2 className="font-serif text-4xl mb-2">User Detail</h2>
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
           <div className="p-2">
@@ -19,6 +26,7 @@ export default function UerAdd() {
               type="text"
               name="loginId"
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
+              value={userInfo.loginId}
             />
           </div>
           <div className="p-2">
@@ -52,6 +60,7 @@ export default function UerAdd() {
               type="text"
               name="userName"
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
+              value={userInfo.userName}
             />
           </div>
           <div className="p-2">

@@ -147,7 +147,7 @@ export default function MyclassDetail() {
   ];
 
   return (
-    <div className="w-1/2 overflow-y-auto mt-16">
+    <div className="w-1/2 overflow-y-auto">
       <h2 className="font-serif text-4xl mb-2">My classes Detail</h2>
       <div className="bg-white rounded-xl w-full p-4 ">
         <BlackBoard title="マイクラステスト" className="3-1">

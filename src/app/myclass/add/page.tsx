@@ -39,7 +39,7 @@ export default function MyClassAdd() {
   };
 
   return (
-    <div className="w-1/2 overflow-y-auto mt-16">
+    <div className="w-1/2 overflow-y-auto">
       <h2 className="font-serif text-4xl mb-2">My classes Add</h2>
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">

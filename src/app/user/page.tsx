@@ -1,5 +1,7 @@
+"use client";
 import Button from "@/app/components/Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function User() {
   const userInfos = [
@@ -23,9 +25,16 @@ export default function User() {
     },
   ];
 
+  const router = useRouter();
+
   const userList = userInfos.map((userInfo, index) => {
     return (
-      <tr className=" hover:bg-gray-200 cursor-pointer">
+      <tr
+        className=" hover:bg-gray-200 cursor-pointer"
+        onClick={() => {
+          router.push("user/detail/" + userInfo.userId);
+        }}
+      >
         <td>{userInfo.loginId}</td>
         <td>{userInfo.userName}</td>
         <td>{userInfo.authority}</td>
@@ -35,13 +44,13 @@ export default function User() {
   });
 
   return (
-    <div className="w-1/2 overflow-y-auto mt-16">
+    <div className="w-1/2 overflow-y-auto">
       <h2 className="font-serif text-4xl mb-2">User Managements</h2>
       <div className="bg-white rounded-xl w-full p-4">
         <form action="">
           <div className="flex">
             <div className="p-2">
-              <h3>Login ID</h3>
+              <h3>■ Login ID</h3>
               <input
                 type="text"
                 name="userId"
@@ -51,7 +60,7 @@ export default function User() {
               />
             </div>
             <div className="p-2">
-              <h3>Name</h3>
+              <h3>■ Name</h3>
               <input
                 type="text"
                 name="userName"
@@ -60,29 +69,29 @@ export default function User() {
                 className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               />
             </div>
-            <div className="p-2">
-              <h3>authority</h3>
-              <input
-                id="admin"
-                type="checkbox"
-                name="authority"
-                value="admin"
-                className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
-              />
-              <label htmlFor="admin" className="pl-1 pr-2">
-                Admin
-              </label>
-              <input
-                id="general"
-                type="checkbox"
-                name="authority"
-                value="general"
-                className="border-2 rounded-md"
-              />
-              <label htmlFor="general" className="pl-1 pr-2">
-                General
-              </label>
-            </div>
+          </div>
+          <div className="p-2">
+            <h3>■ authority</h3>
+            <input
+              id="admin"
+              type="checkbox"
+              name="authority"
+              value="admin"
+              className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
+            />
+            <label htmlFor="admin" className="pl-1 pr-2">
+              Admin
+            </label>
+            <input
+              id="general"
+              type="checkbox"
+              name="authority"
+              value="general"
+              className="border-2 rounded-md"
+            />
+            <label htmlFor="general" className="pl-1 pr-2">
+              General
+            </label>
           </div>
           <Button color="blue" message="Serch" paddingXNum={6} justifyEnd />
         </form>
