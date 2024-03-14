@@ -2,21 +2,14 @@
 
 import Button from "@/app/components/Button";
 import { SetStateAction, useState } from "react";
+import { SeatInfo } from "./page";
 
 export default function AddContent({
   seatInfos,
+  handleClick,
 }: {
-  seatInfos: {
-    col: number;
-    seatTotal: number;
-    seatDetails: {
-      seatNumber: number;
-      stundetId: number;
-      studentName: string;
-      sexType: number;
-      seatLine: number;
-    }[];
-  }[];
+  seatInfos: SeatInfo;
+  handleClick: () => void;
 }) {
   const [sexType, setSexType] = useState(1);
   const handleSexType = (e: { target: { value: SetStateAction<string> } }) => {
@@ -30,6 +23,15 @@ export default function AddContent({
 
   return (
     <>
+      <div
+        className="font-bold cursor-pointer ml-auto text-end"
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick();
+        }}
+      >
+        ✖️
+      </div>
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Seat Add</h2>
       <form action="" className="mt-2">
         <div className="mb-2">
@@ -54,7 +56,7 @@ export default function AddContent({
             placeholder="生徒名"
             maxLength={6}
             size={20}
-            className="border-2 rounded-md mt-1"
+            className="border-2 rounded-md mt-1 focus:outline-none focus:shadow-outline hover:border-gray-500"
           />
         </div>
         <div className="p-2">

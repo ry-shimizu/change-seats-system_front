@@ -1,20 +1,13 @@
 "use client";
 import Button from "@/app/components/Button";
+import { SeatInfo } from "./page";
 
 export default function DeleteContent({
   seatInfos,
+  handleClick,
 }: {
-  seatInfos: {
-    col: number;
-    seatTotal: number;
-    seatDetails: {
-      seatNumber: number;
-      stundetId: number;
-      studentName: string;
-      sexType: number;
-      seatLine: number;
-    }[];
-  }[];
+  seatInfos: SeatInfo;
+  handleClick: () => void;
 }) {
   const deletePullDown = seatInfos.flatMap((seatInfo) => {
     return seatInfo.seatDetails.map((seatDetail) => {
@@ -28,6 +21,15 @@ export default function DeleteContent({
 
   return (
     <>
+      <div
+        className="font-bold cursor-pointer ml-auto text-end"
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick();
+        }}
+      >
+        ✖️
+      </div>
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Seat Delete</h2>
       <form action="" className="mt-2">
         <div className="mb-2">

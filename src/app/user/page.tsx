@@ -41,14 +41,13 @@ export default function User() {
         <form action="">
           <div className="flex">
             <div className="p-2">
-              <h3>ID</h3>
+              <h3>Login ID</h3>
               <input
                 type="text"
                 name="userId"
-                placeholder="ID"
                 maxLength={10}
                 size={10}
-                className="border-2 rounded-md"
+                className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               />
             </div>
             <div className="p-2">
@@ -56,10 +55,9 @@ export default function User() {
               <input
                 type="text"
                 name="userName"
-                placeholder="ユーザ名"
                 maxLength={20}
                 size={20}
-                className="border-2 rounded-md"
+                className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               />
             </div>
             <div className="p-2">
@@ -69,7 +67,7 @@ export default function User() {
                 type="checkbox"
                 name="authority"
                 value="admin"
-                className="border-2 rounded-md"
+                className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               />
               <label htmlFor="admin" className="pl-1 pr-2">
                 Admin

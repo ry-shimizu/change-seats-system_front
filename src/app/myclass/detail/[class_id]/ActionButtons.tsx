@@ -5,27 +5,18 @@ import Modal from "react-modal";
 import AddContent from "./AddContent";
 import ChangeContent from "./ChangeContent";
 import DeleteContent from "./DeleteContent";
+import { SeatInfo } from "./page";
 
 export default function ActionButtons({
   startPoint,
   seatInfos,
 }: {
   startPoint: number;
-  seatInfos: {
-    col: number;
-    seatTotal: number;
-    seatDetails: {
-      seatNumber: number;
-      stundetId: number;
-      studentName: string;
-      sexType: number;
-      seatLine: number;
-    }[];
-  }[];
+  seatInfos: SeatInfo;
 }) {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isChangeOpen, setIsChangepen] = useState(false);
+  const [isChangeOpen, setIsChangeOpen] = useState(false);
 
   const handleOpenClick = (setIsOpen: (value: boolean) => void) => {
     setIsOpen(true);
@@ -64,7 +55,7 @@ export default function ActionButtons({
         onRequestClose={() => handleCloseClick(setIsAddOpen)}
         style={customStyles}
       >
-        <AddContent seatInfos={seatInfos} />
+        <AddContent seatInfos={seatInfos} handleClick={() => handleCloseClick(setIsAddOpen)} />
       </Modal>
 
       <Button
@@ -79,22 +70,28 @@ export default function ActionButtons({
         onRequestClose={() => handleCloseClick(setIsDeleteOpen)}
         style={customStyles}
       >
-        <DeleteContent seatInfos={seatInfos} />
+        <DeleteContent
+          seatInfos={seatInfos}
+          handleClick={() => handleCloseClick(setIsDeleteOpen)}
+        />
       </Modal>
 
       <Button
         color="green"
         message="Change"
         paddingXNum={2}
-        handleClick={() => handleOpenClick(setIsChangepen)}
+        handleClick={() => handleOpenClick(setIsChangeOpen)}
       />
       <Modal
         isOpen={isChangeOpen}
         contentLabel="test"
-        onRequestClose={() => handleCloseClick(setIsChangepen)}
+        onRequestClose={() => handleCloseClick(setIsChangeOpen)}
         style={customStyles}
       >
-        <ChangeContent seatInfos={seatInfos} />
+        <ChangeContent
+          seatInfos={seatInfos}
+          handleClick={() => handleCloseClick(setIsChangeOpen)}
+        />
       </Modal>
     </div>
   );

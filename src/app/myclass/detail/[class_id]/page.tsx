@@ -2,6 +2,18 @@ import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
 import ActionButtons from "@/app/myclass/detail/[class_id]/ActionButtons";
 
+export type SeatInfo = {
+  col: number;
+  seatTotal: number;
+  seatDetails: {
+    seatNumber: number;
+    stundetId: number;
+    studentName: string;
+    sexType: number;
+    seatLine: number;
+  }[];
+}[];
+
 export default function MyclassDetail() {
   const startPoint = 1;
   const seatInfos = [

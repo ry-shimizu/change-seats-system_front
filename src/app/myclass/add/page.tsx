@@ -7,7 +7,7 @@ export default function MyClassAdd() {
     <input
       type="number"
       name="seatTotalber1"
-      className="border-2 rounded-md"
+      className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
       placeholder="座席数(1列目)"
       min={1}
     />,
@@ -18,7 +18,7 @@ export default function MyClassAdd() {
       <input
         type="number"
         name={`seatTotalber${inputCount}`}
-        className="border-2 rounded-md"
+        className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
         placeholder={`座席数(${inputCount}列目)`}
         min={1}
       />
@@ -49,7 +49,7 @@ export default function MyClassAdd() {
               type="number"
               name="year"
               placeholder="年度"
-              className="border-2 rounded-md"
+              className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               min={2023}
               max={9999}
             />
@@ -62,7 +62,7 @@ export default function MyClassAdd() {
               placeholder="クラス"
               maxLength={10}
               size={20}
-              className="border-2 rounded-md"
+              className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
           <div className="p-2">
@@ -73,7 +73,7 @@ export default function MyClassAdd() {
               placeholder="タイトル"
               maxLength={20}
               size={40}
-              className="border-2 rounded-md"
+              className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
           <div className="p-2">
@@ -98,7 +98,7 @@ export default function MyClassAdd() {
           <div className="p-2">
             <h3>■ Seat number</h3>
             {seatTotal.map((inputElement, index) => (
-              <div key={index} className="mb-2">
+              <div key={index} className="mb-2 focus:outline-none">
                 {inputElement}
               </div>
             ))}
