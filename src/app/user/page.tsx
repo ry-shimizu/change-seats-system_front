@@ -1,7 +1,6 @@
-"use client";
 import Button from "@/app/components/Button";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import UserTable from "./user-table";
 
 export default function User() {
   const userInfos = [
@@ -24,24 +23,6 @@ export default function User() {
       loginId: "seiya",
     },
   ];
-
-  const router = useRouter();
-
-  const userList = userInfos.map((userInfo, index) => {
-    return (
-      <tr
-        className=" hover:bg-gray-200 cursor-pointer"
-        onClick={() => {
-          router.push("user/detail/" + userInfo.userId);
-        }}
-      >
-        <td>{userInfo.loginId}</td>
-        <td>{userInfo.userName}</td>
-        <td>{userInfo.authority}</td>
-        <td>&gt;</td>
-      </tr>
-    );
-  });
 
   return (
     <div className="w-1/2 overflow-y-auto">
@@ -118,7 +99,9 @@ export default function User() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">{userList}</tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
+              <UserTable userInfos={userInfos} />
+            </tbody>
           </table>
         </div>
       </div>

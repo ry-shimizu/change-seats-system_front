@@ -1,20 +1,13 @@
-"use client";
 import Button from "@/app/components/Button";
-import { SetStateAction, useState } from "react";
+import AuthorityRadio from "../../authority-radio";
 
 export default function UerDetail() {
   const userInfo = {
     userId: 1,
     userName: "反町 隆",
-    authority: "admin",
+    authority: "general",
     loginId: "takashi",
   };
-  const [authority, setAuthority] = useState(userInfo.authority);
-
-  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setAuthority(e.target.value);
-  };
-
   return (
     <div className="w-1/3 overflow-y-auto">
       <h2 className="font-serif text-4xl mb-2">User Detail</h2>
@@ -29,31 +22,7 @@ export default function UerDetail() {
               value={userInfo.loginId}
             />
           </div>
-          <div className="p-2">
-            <h3>■ Authority</h3>
-            <input
-              id="admin"
-              type="radio"
-              name="authority"
-              value="admin"
-              checked={authority === "admin"}
-              onChange={handleStartSeatChange}
-            />
-            <label htmlFor="admin" className="p-1">
-              Admin
-            </label>
-            <input
-              id="general"
-              type="radio"
-              name="authority"
-              value="general"
-              checked={authority === "general"}
-              onChange={handleStartSeatChange}
-            />
-            <label htmlFor="general" className="p-1">
-              General
-            </label>
-          </div>
+          <AuthorityRadio value={userInfo.authority} />
           <div className="p-2">
             <h3>■ User Name</h3>
             <input
@@ -71,7 +40,10 @@ export default function UerDetail() {
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
-          <Button color="blue" message="Regist" paddingXNum={6} justifyEnd />
+          <div className="flex justify-end mt-5">
+            <Button color="blue" message="Update" paddingXNum={2} />
+            <Button color="red" message="Delete" paddingXNum={2} />
+          </div>
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@ import Button from "@/app/components/Button";
 import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
 import { useState } from "react";
+import XButton from "./XButton";
 import { SeatInfo } from "./page";
 
 export default function ChangeContent({
@@ -114,15 +115,7 @@ export default function ChangeContent({
 
   return (
     <>
-      <div
-        className="font-bold cursor-pointer ml-auto text-end"
-        onClick={(e) => {
-          e.preventDefault();
-          handleClick();
-        }}
-      >
-        ✖️
-      </div>
+      <XButton handleClick={handleClick} />
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Seat Change</h2>
       <BlackBoard>
         <Seat seatInfos={seatInfos} />

@@ -1,4 +1,7 @@
 "use client";
+
+import { BgColor, BorderColor } from "../enum/color";
+
 export default function Button({
   color,
   message,
@@ -21,7 +24,9 @@ export default function Button({
   return (
     <div className={`${justifyEnd && "justify-end"} flex px-${paddingXNum}`}>
       <button
-        className={`bg-${color}-500 border-2 ml-2 border-${color}-500 rounded-md text-white ${pxCss} ${pyCss}`}
+        className={`${BgColor[color as keyof typeof BgColor]} border-2 ml-2 ${
+          BorderColor[color as keyof typeof BorderColor]
+        } rounded-md text-white ${pxCss} ${pyCss}`}
         onClick={(e) => {
           e.preventDefault();
           handleClick && handleClick();

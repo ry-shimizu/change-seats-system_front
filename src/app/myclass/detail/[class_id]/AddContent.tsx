@@ -2,6 +2,7 @@
 
 import Button from "@/app/components/Button";
 import { SetStateAction, useState } from "react";
+import XButton from "./XButton";
 import { SeatInfo } from "./page";
 
 export default function AddContent({
@@ -23,15 +24,7 @@ export default function AddContent({
 
   return (
     <>
-      <div
-        className="font-bold cursor-pointer ml-auto text-end"
-        onClick={(e) => {
-          e.preventDefault();
-          handleClick();
-        }}
-      >
-        ✖️
-      </div>
+      <XButton handleClick={handleClick} />
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Seat Add</h2>
       <form action="" className="mt-2">
         <div className="mb-2">

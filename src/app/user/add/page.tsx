@@ -1,13 +1,7 @@
-"use client";
 import Button from "@/app/components/Button";
-import { SetStateAction, useState } from "react";
+import AuthorityRadio from "../authority-radio";
 
 export default function UerAdd() {
-  const [authority, setAuthority] = useState("admin");
-
-  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setAuthority(e.target.value);
-  };
   return (
     <div className="w-1/3 overflow-y-auto">
       <h2 className="font-serif text-4xl mb-2">User Add</h2>
@@ -21,31 +15,7 @@ export default function UerAdd() {
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
-          <div className="p-2">
-            <h3>■ Authority</h3>
-            <input
-              id="admin"
-              type="radio"
-              name="authority"
-              value="admin"
-              checked={authority === "admin"}
-              onChange={handleStartSeatChange}
-            />
-            <label htmlFor="admin" className="p-1">
-              Admin
-            </label>
-            <input
-              id="general"
-              type="radio"
-              name="authority"
-              value="general"
-              checked={authority === "general"}
-              onChange={handleStartSeatChange}
-            />
-            <label htmlFor="general" className="p-1">
-              General
-            </label>
-          </div>
+          <AuthorityRadio />
           <div className="p-2">
             <h3>■ User Name</h3>
             <input
