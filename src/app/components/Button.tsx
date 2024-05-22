@@ -26,11 +26,14 @@ export default function Button({
       <button
         className={`${BgColor[color as keyof typeof BgColor]} border-2 ml-2 ${
           BorderColor[color as keyof typeof BorderColor]
-        } rounded-md text-white ${pxCss} ${pyCss}`}
+        } rounded-md text-white ${pxCss} ${pyCss} hover:scale-110 duration-300`}
         onClick={(e) => {
-          e.preventDefault();
-          handleClick && handleClick();
+          if (handleClick) {
+            e.preventDefault();
+            handleClick();
+          }
         }}
+        type="submit"
       >
         {message}
       </button>

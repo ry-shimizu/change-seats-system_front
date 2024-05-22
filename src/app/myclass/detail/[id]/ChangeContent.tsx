@@ -17,18 +17,22 @@ export default function ChangeContent({
   const handlesetIsChangeCondition = (e: { target: { checked: boolean } }) => {
     setIsChangeCondition(e.target.checked);
   };
-  const changePullDown = seatInfos.flatMap((seatInfo) => {
-    return seatInfo.seatDetails.map((seatDetail) => {
+  const changePullDown = seatInfos.flatMap((seatInfo, seatInfoIndex) => {
+    return seatInfo.seatDetails.map((seatDetail, seatDetailIndex) => {
       return (
-        <option value={String(seatDetail.seatNumber)}>
+        <option value={String(seatDetail.seatNumber)} key={`${seatInfoIndex}-${seatDetailIndex}`}>
           {String(seatDetail.seatNumber) + ":" + seatDetail.studentName}
         </option>
       );
     });
   });
 
-  const colPullDown = seatInfos.map((seatInfo) => {
-    return <option value={String(seatInfo.col)}>{String(seatInfo.col)}</option>;
+  const colPullDown = seatInfos.map((seatInfo, index) => {
+    return (
+      <option value={String(seatInfo.col)} key={index}>
+        {String(seatInfo.col)}
+      </option>
+    );
   });
 
   const linePullDown = seatInfos
@@ -43,8 +47,12 @@ export default function ChangeContent({
       }
       return acc;
     }, [])
-    .map((seatLine) => {
-      return <option value={seatLine}>{seatLine}</option>;
+    .map((seatLine, seatLineIndex) => {
+      return (
+        <option value={seatLine} key={seatLineIndex}>
+          {seatLine}
+        </option>
+      );
     });
 
   const changeCondition = (
@@ -74,7 +82,7 @@ export default function ChangeContent({
             <option>&nbsp;&nbsp;&nbsp;</option>
             {linePullDown}
           </select>
-          <span className="p-1">列目</span>
+          <span className="p-1">列目まで</span>
         </div>
 
         <div className="p-1">
@@ -93,7 +101,7 @@ export default function ChangeContent({
             <option>&nbsp;&nbsp;&nbsp;</option>
             {colPullDown}
           </select>
-          <span className="p-1">列目</span>
+          <span className="p-1">列目まで</span>
         </div>
       </div>
     </div>

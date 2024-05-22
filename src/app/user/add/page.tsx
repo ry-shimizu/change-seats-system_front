@@ -1,14 +1,28 @@
-import Button from "@/app/components/Button";
+import ComfirmModal from "@/app/components/ConfirmModal";
+import { registerSiteUser } from "@/app/lib/api/siteUser/registerSiteUser";
+import { redirect } from "next/navigation";
 import AuthorityRadio from "../authority-radio";
 
 export default function UerAdd() {
+  const formAction = async (formData: FormData) => {
+    "use server";
+    const rawFormData = {
+      loginId: formData.get("loginId"),
+      authority: formData.get("authority"),
+      userName: formData.get("userName"),
+      password: formData.get("password"),
+    };
+    registerSiteUser(JSON.stringify(rawFormData));
+    redirect("/user");
+  };
+
   return (
     <div className="w-1/3 overflow-y-auto">
-      <h2 className="font-serif text-4xl mb-2">User Add</h2>
+      <h2 className="font-mono text-3xl mb-2">ユーザー登録画面</h2>
       <div className="bg-white rounded-xl w-full p-4">
-        <form action="">
+        <form action={formAction} name="userAdd">
           <div className="p-2">
-            <h3>■ Login Id</h3>
+            <h3>■ ログインID</h3>
             <input
               type="text"
               name="loginId"
@@ -17,7 +31,7 @@ export default function UerAdd() {
           </div>
           <AuthorityRadio />
           <div className="p-2">
-            <h3>■ User Name</h3>
+            <h3>■ ユーザー名</h3>
             <input
               type="text"
               name="userName"
@@ -25,14 +39,20 @@ export default function UerAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>■ Password</h3>
+            <h3>■ パスワード</h3>
             <input
               type="password"
               name="password"
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
-          <Button color="blue" message="Regist" paddingXNum={6} justifyEnd />
+          <ComfirmModal
+            buttonMessage="登録"
+            buttonColor="blue"
+            contentMessage="登録しますか？"
+            title="登録確認"
+            formName="userAdd"
+          />
         </form>
       </div>
     </div>

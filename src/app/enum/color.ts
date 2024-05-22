@@ -3,6 +3,7 @@ export enum BorderColor {
   blue = "border-blue-500",
   green = "border-green-500",
   orange = "border-orange-500",
+  gray = "border-gray-500",
 }
 
 export enum BgColor {
@@ -10,4 +11,5 @@ export enum BgColor {
   blue = "bg-blue-500",
   green = "bg-green-500",
   orange = "bg-orange-500",
+  gray = "bg-gray-500",
 }

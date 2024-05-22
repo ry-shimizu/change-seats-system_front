@@ -1,4 +1,6 @@
 import ClassLabel from "@/app/components/Class/ClassLabel";
+import { ClassList } from "@/app/lib/api/type";
+import dayjs from "dayjs";
 import Link from "next/link";
 
 export default function ClassList({
@@ -6,24 +8,19 @@ export default function ClassList({
   pageTitle,
   path,
 }: {
-  classLabelList: {
-    classId: number;
-    classNum: string;
-    title: string;
-    studentNum: number;
-    lastUpdate: string;
-  }[];
+  classLabelList: ClassList;
   pageTitle: string;
   path: string;
 }) {
-  const classLabelElement = classLabelList.map((classLabel) => {
+  const classLabelElement = classLabelList.classList.map((classLabel) => {
     return (
       <ClassLabel
         classId={classLabel.classId}
-        classNum={classLabel.classNum}
+        className={classLabel.className}
+        classYear={classLabel.classYear}
         title={classLabel.title}
         studentNum={classLabel.studentNum}
-        lastUpdate={classLabel.lastUpdate}
+        lastUpdate={dayjs(classLabel.updatedDt).format("YYYY年MM月DD日")}
         isOtherClassFlg={path === "otherclass" ? true : false}
       />
     );
@@ -31,9 +28,11 @@ export default function ClassList({
 
   return (
     <div className="w-1/2">
-      <h2 className="font-serif text-4xl mb-2">{pageTitle}</h2>
-      <div className="bg-white rounded-xl w-full h-full items-center flex flex-col">
+      <h2 className="font-mono text-3xl mb-2">{pageTitle}</h2>
+      <div className="bg-white rounded-xl w-full h-full items-center flex flex-col p-2">
         {classLabelElement}
+      </div>
+      <div className="flex justify-end mt-1">
         <Link
           href={`/${path}/add`}
           className="ml-auto mr-3 mt-auto mb-2 text-blue-400 hover:underline"

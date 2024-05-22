@@ -1,22 +1,23 @@
 "use client";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
-export default function AuthorityRadio({ value = "admin" }: { value?: string }) {
+export default function AuthorityRadio({ value = "1" }: { value?: string }) {
   const [authority, setAuthority] = useState(value);
 
-  const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setAuthority(e.target.value);
+  const handleStartSeatChange = (value: string) => {
+    setAuthority(value);
   };
+
   return (
     <div className="p-2">
-      <h3>■ Authority</h3>
+      <h3>■ 権限</h3>
       <input
         id="admin"
         type="radio"
         name="authority"
-        value="admin"
-        checked={authority === "admin"}
-        onChange={handleStartSeatChange}
+        value="1"
+        checked={authority === "1"}
+        onChange={(e) => handleStartSeatChange(e.target.value)}
       />
       <label htmlFor="admin" className="p-1">
         Admin
@@ -25,9 +26,9 @@ export default function AuthorityRadio({ value = "admin" }: { value?: string }) 
         id="general"
         type="radio"
         name="authority"
-        value="general"
-        checked={authority === "general"}
-        onChange={handleStartSeatChange}
+        value="2"
+        checked={authority === "2"}
+        onChange={(e) => handleStartSeatChange(e.target.value)}
       />
       <label htmlFor="general" className="p-1">
         General

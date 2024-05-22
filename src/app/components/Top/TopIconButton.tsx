@@ -18,7 +18,7 @@ export default function TopIconButton({
       href={path}
     >
       {iconItem === "PiChalkboardTeacherLight" && (
-        <PiChalkboardTeacherLight size="6rem" color="#75A9FF	" />
+        <PiChalkboardTeacherLight size="6rem" color="#75A9FF" />
       )}
       {iconItem === "HiOutlineUserCircle" && <HiOutlineUserCircle size="6rem" color="#00BB00" />}
       {iconItem === "PiChalkboardTeacherFill" && (

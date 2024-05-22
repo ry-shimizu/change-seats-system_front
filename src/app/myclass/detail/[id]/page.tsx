@@ -1,6 +1,6 @@
 import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
-import ActionButtons from "@/app/myclass/detail/[class_id]/ActionButtons";
+import ActionButtons from "@/app/myclass/detail/[id]/ActionButtons";
 
 export type SeatInfo = {
   col: number;

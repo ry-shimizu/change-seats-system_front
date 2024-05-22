@@ -16,9 +16,19 @@ export default function AddContent({
   const handleSexType = (e: { target: { value: SetStateAction<string> } }) => {
     setSexType(Number(e.target.value));
   };
-  const addpullDown = seatInfos.flatMap((seatInfo) => {
-    return seatInfo.seatDetails.map((seatDetail) => {
-      return <option value={String(seatDetail.seatNumber)}>{String(seatDetail.seatNumber)}</option>;
+
+  const [emptySeat, setEmptyseat] = useState(false);
+  const handleEmptyseat = () => {
+    setEmptyseat(!emptySeat);
+  };
+
+  const addpullDown = seatInfos.flatMap((seatInfo, seatInfoIndex) => {
+    return seatInfo.seatDetails.map((seatDetail, seatDetailIndex) => {
+      return (
+        <option value={String(seatDetail.seatNumber)} key={`${seatInfoIndex}-${seatDetailIndex}`}>
+          {String(seatDetail.seatNumber)}
+        </option>
+      );
     });
   });
 
@@ -47,6 +57,7 @@ export default function AddContent({
             type="text"
             name="studentName"
             placeholder="生徒名"
+            disabled={emptySeat}
             maxLength={6}
             size={20}
             className="border-2 rounded-md mt-1 focus:outline-none focus:shadow-outline hover:border-gray-500"
@@ -58,6 +69,7 @@ export default function AddContent({
             id="man"
             type="radio"
             name="sexType"
+            disabled={emptySeat}
             value={1}
             checked={sexType === 1}
             onChange={handleSexType}
@@ -69,12 +81,24 @@ export default function AddContent({
             id="woman"
             type="radio"
             name="sexType"
+            disabled={emptySeat}
             value={2}
             checked={sexType === 2}
             onChange={handleSexType}
           />
           <label htmlFor="woman" className="p-1">
             女性
+          </label>
+        </div>
+        <div className="px-2">
+          <input
+            id="isEmptySeatCondition"
+            type="checkbox"
+            className="border-2 rounded-md"
+            onClick={handleEmptyseat}
+          />
+          <label htmlFor="isEmptySeatCondition" className="pl-1 text-sm">
+            空席を設定する
           </label>
         </div>
       </form>

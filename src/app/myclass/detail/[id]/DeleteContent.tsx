@@ -10,10 +10,10 @@ export default function DeleteContent({
   seatInfos: SeatInfo;
   handleClick: () => void;
 }) {
-  const deletePullDown = seatInfos.flatMap((seatInfo) => {
-    return seatInfo.seatDetails.map((seatDetail) => {
+  const deletePullDown = seatInfos.flatMap((seatInfo, seatInfoIndex) => {
+    return seatInfo.seatDetails.map((seatDetail, seatDetailIndex) => {
       return (
-        <option value={String(seatDetail.seatNumber)}>
+        <option value={String(seatDetail.seatNumber)} key={`${seatInfoIndex}-${seatDetailIndex}`}>
           {String(seatDetail.seatNumber) + ":" + seatDetail.studentName}
         </option>
       );
@@ -36,6 +36,12 @@ export default function DeleteContent({
               <option>選択してください　　▼</option>
               {deletePullDown}
             </select>
+          </div>
+          <div className="px-2">
+            <input id="isEmptySeatCondition" type="checkbox" className="border-2 rounded-md" />
+            <label htmlFor="isEmptySeatCondition" className="pl-1 text-sm">
+              空席を設定する
+            </label>
           </div>
         </div>
       </form>

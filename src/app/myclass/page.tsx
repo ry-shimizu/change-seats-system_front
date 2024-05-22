@@ -5,6 +5,7 @@ export default function MyClass() {
     {
       classId: 1,
       classNum: "3-1",
+      classYear: 2023,
       title: "僕の担任クラス",
       studentNum: 38,
       lastUpdate: "2023年12月23日",
@@ -12,6 +13,7 @@ export default function MyClass() {
     {
       classId: 2,
       classNum: "3-5",
+      classYear: 2023,
       title: "僕の担任クラス",
       studentNum: 5,
       lastUpdate: "2023年04月23日",
@@ -19,6 +21,7 @@ export default function MyClass() {
     {
       classId: 3,
       classNum: "2-2",
+      classYear: 2022,
       title: "週末うううう12文字最大",
       studentNum: 38,
       lastUpdate: "2023年10月23日",
