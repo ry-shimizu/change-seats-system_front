@@ -9,15 +9,17 @@ export async function formAction(state: SiteUserDetailList, formData: FormData) 
       authority.push(value as string);
     }
   });
-  const authorityQuery = authority
-    .map((value) => `authority=${encodeURIComponent(value)}`)
-    .join("&");
-
+  const isAdmin = true;
+  const schoolId = 1;
   const response = await searchSiteUser(
-    `siteUser/?loginId=${formData.get("loginId")}&userName=${formData.get(
-      "userName"
-    )}&${authorityQuery}`
+    JSON.stringify({
+      loginId: formData.get("loginId"),
+      userName: formData.get("userName"),
+      schoolName: formData.get("schoolName"),
+      authority,
+      schoolId,
+      isAdmin,
+    })
   );
-
   return response;
 }

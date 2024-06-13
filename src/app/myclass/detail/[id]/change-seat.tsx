@@ -1,24 +1,25 @@
-"use clinet";
+"use client";
 import Button from "@/app/components/Button";
 import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
+import { handleClick } from "@/app/components/modal";
+import { ClassDetail } from "@/app/lib/api/type";
 import { useState } from "react";
-import XButton from "./XButton";
-import { SeatInfo } from "./page";
+import XButton from "./x-button";
 
-export default function ChangeContent({
+export default function ChangeSeat({
   seatInfos,
-  handleClick,
+  setIsChangeOpen,
 }: {
-  seatInfos: SeatInfo;
-  handleClick: () => void;
+  seatInfos: ClassDetail;
+  setIsChangeOpen: (value: boolean) => void;
 }) {
   const [isChangeCondition, setIsChangeCondition] = useState(false);
   const handlesetIsChangeCondition = (e: { target: { checked: boolean } }) => {
     setIsChangeCondition(e.target.checked);
   };
-  const changePullDown = seatInfos.flatMap((seatInfo, seatInfoIndex) => {
-    return seatInfo.seatDetails.map((seatDetail, seatDetailIndex) => {
+  const changePullDown = seatInfos.seatsAddColInfo.flatMap((seatInfo, seatInfoIndex) => {
+    return seatInfo.seatsInfo.map((seatDetail, seatDetailIndex) => {
       return (
         <option value={String(seatDetail.seatNumber)} key={`${seatInfoIndex}-${seatDetailIndex}`}>
           {String(seatDetail.seatNumber) + ":" + seatDetail.studentName}
@@ -27,7 +28,7 @@ export default function ChangeContent({
     });
   });
 
-  const colPullDown = seatInfos.map((seatInfo, index) => {
+  const colPullDown = seatInfos.seatsAddColInfo.map((seatInfo, index) => {
     return (
       <option value={String(seatInfo.col)} key={index}>
         {String(seatInfo.col)}
@@ -35,10 +36,10 @@ export default function ChangeContent({
     );
   });
 
-  const linePullDown = seatInfos
+  const linePullDown = seatInfos.seatsAddColInfo
     .flatMap((seatInfo) => {
-      return seatInfo.seatDetails.map((seatDetail) => {
-        return String(seatDetail.seatLine);
+      return seatInfo.seatsInfo.map((seatInfo) => {
+        return String(seatInfo.seatNumber % 10);
       });
     })
     .reduce((acc: string[], duplicateSeatLine) => {
@@ -110,7 +111,6 @@ export default function ChangeContent({
   const [seatChangeTotal, setSeatChangeTotal] = useState([changeCondition]);
 
   const handleAddClick = () => {
-    const inputCount = seatChangeTotal.length + 1;
     const addInputElement = changeCondition;
     setSeatChangeTotal((preValue) => [...preValue, addInputElement]);
   };
@@ -123,10 +123,10 @@ export default function ChangeContent({
 
   return (
     <>
-      <XButton handleClick={handleClick} />
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Seat Change</h2>
+      <XButton handleClick={() => handleClick(setIsChangeOpen, false)} />
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">席替え</h2>
       <BlackBoard>
-        <Seat seatInfos={seatInfos} />
+        <Seat seatsInfo={seatInfos} />
       </BlackBoard>
       <input
         id="isChangeConditions"
@@ -164,8 +164,8 @@ export default function ChangeContent({
         </form>
       )}
       <div className="mt-5 flex justify-end">
-        <Button color="blue" message="Save" paddingXNum={2} justifyEnd />
-        <Button color="green" message="Change" paddingXNum={2} justifyEnd />
+        <Button color="blue" message="更新" paddingXNum={2} justifyEnd />
+        <Button color="green" message="席替え" paddingXNum={2} justifyEnd />
       </div>
     </>
   );

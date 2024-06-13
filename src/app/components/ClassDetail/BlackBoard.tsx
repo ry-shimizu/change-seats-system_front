@@ -10,7 +10,7 @@ export default function BlackBoard({
       <div className="flex justify-center items-start flex-col border border-white bg-emerald-700">
         {title && (
           <h3 className="text-lg my-2 px-2 text-white">
-            {className} {title}
+            {className}　{title}
           </h3>
         )}
       </div>

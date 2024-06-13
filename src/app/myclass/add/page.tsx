@@ -1,15 +1,28 @@
+"use client";
 import Button from "@/app/components/Button";
+import { useState } from "react";
+import { formAction } from "./action";
 import SeatNumberImput from "./seatNumber-input";
 import SeatStartRadio from "./seatStart-radio";
 
 export default function MyClassAdd() {
+  const [seatTotal, setSeatTotal] = useState([
+    <input
+      type="number"
+      name="seatTotalber1"
+      className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
+      placeholder="座席数(1列目)"
+      min={1}
+    />,
+  ]);
+
   return (
-    <div className="w-1/2 overflow-y-auto">
-      <h2 className="font-serif text-4xl mb-2">My classes Add</h2>
+    <div className="w-1/2">
+      <h2 className="font-mono text-3xl mb-2">マイクラス登録</h2>
       <div className="bg-white rounded-xl w-full p-4">
-        <form action="">
+        <form action={(formData: FormData) => formAction(formData, seatTotal.length)}>
           <div className="p-2">
-            <h3>■ Year</h3>
+            <h3>■ 年度</h3>
             <input
               type="number"
               name="year"
@@ -20,7 +33,7 @@ export default function MyClassAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>■ Class</h3>
+            <h3>■ クラス</h3>
             <input
               type="text"
               name="className"
@@ -31,7 +44,7 @@ export default function MyClassAdd() {
             />
           </div>
           <div className="p-2">
-            <h3>■ Title</h3>
+            <h3>■ タイトル</h3>
             <input
               type="text"
               name="title"
@@ -42,12 +55,12 @@ export default function MyClassAdd() {
             />
           </div>
           <SeatStartRadio />
-          <SeatNumberImput />
+          <SeatNumberImput seatTotal={seatTotal} setSeatTotal={setSeatTotal} />
           <div className="p-2">
-            <h3 className="mb-2">■ Student regist CSV Upload</h3>
-            <input type="file" accept="text/csv" />
+            <h3 className="mb-2">■ 生徒登録用CSVアップロード</h3>
+            <input type="file" accept="text/csv" name="file" />
           </div>
-          <Button color="blue" message="Regist" paddingXNum={6} justifyEnd />
+          <Button color="blue" message="登録" paddingXNum={6} justifyEnd />
         </form>
       </div>
     </div>

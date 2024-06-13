@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="bg-gray-100 w-full h-screen" id="app">
           <Header />
           <div className="relative">
-            <div className="fixed left-1/4 top-32 w-full">{children}</div>
+            <div className="fixed left-1/4 top-32 w-full overflow-y-auto h-5/6">{children}</div>
           </div>
         </div>
       </body>

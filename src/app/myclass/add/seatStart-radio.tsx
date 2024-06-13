@@ -2,35 +2,35 @@
 import { SetStateAction, useState } from "react";
 
 export default function SeatStartRadio() {
-  const [startSeat, setStartSeat] = useState("right");
+  const [startSeat, setStartSeat] = useState("1");
 
   const handleStartSeatChange = (e: { target: { value: SetStateAction<string> } }) => {
     setStartSeat(e.target.value);
   };
   return (
     <div className="p-2">
-      <h3>■ Seat start point</h3>
+      <h3>■ 座席開始位置</h3>
       <input
         id="right"
         type="radio"
-        name="startPoint"
-        value="right"
-        checked={startSeat === "right"}
+        name="seatStartPoint"
+        value="1"
+        checked={startSeat === "1"}
         onChange={handleStartSeatChange}
       />
       <label htmlFor="right" className="p-1">
-        Right
+        右
       </label>
       <input
         id="left"
         type="radio"
-        name="startPoint"
-        value="left"
-        checked={startSeat === "left"}
+        name="seatStartPoint"
+        value="2"
+        checked={startSeat === "2"}
         onChange={handleStartSeatChange}
       />
       <label htmlFor="left" className="p-1">
-        Left
+        左
       </label>
     </div>
   );

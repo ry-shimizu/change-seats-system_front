@@ -1,21 +1,24 @@
 import ComfirmModal from "@/app/components/ConfirmModal";
+import { getSchoolList } from "@/app/lib/api/school/getSchoolList";
 import { deleteSiteUser } from "@/app/lib/api/siteUser/deleteSiteUser";
 import { getSiteUserDetail } from "@/app/lib/api/siteUser/getSiteUserDetail";
 import { updateSiteUser } from "@/app/lib/api/siteUser/updateSiteUser";
 import { redirect } from "next/navigation";
 import AuthorityRadio from "../../authority-radio";
 
-export default async function UerDetail({ params }: { params: { id: number } }) {
+export default async function UserDetail({ params }: { params: { id: number } }) {
   const siteUserDetail = await getSiteUserDetail(params.id);
   const updateFormAction = async (formData: FormData) => {
     "use server";
     const rawFormData = {
-      id: params.id,
+      updateSiteUserId: params.id,
+      loginSiteUserId: 1,
       loginId: formData.get("loginId"),
       authority: formData.get("authority"),
       userName: formData.get("userName"),
       password: formData.get("password"),
-    };
+      schoolId: formData.get("schoolId") || 0,
+    }; // ログイン情報のschoolId
     updateSiteUser(JSON.stringify(rawFormData));
     redirect("/user");
   };
@@ -28,6 +31,8 @@ export default async function UerDetail({ params }: { params: { id: number } }) 
     deleteSiteUser(JSON.stringify(rawFormData));
     redirect("/user");
   };
+
+  const schoolList = await getSchoolList();
 
   return (
     <div className="w-1/3 overflow-y-auto">
@@ -43,7 +48,12 @@ export default async function UerDetail({ params }: { params: { id: number } }) 
               defaultValue={siteUserDetail.loginId}
             />
           </div>
-          <AuthorityRadio value={siteUserDetail.authority} />
+          <AuthorityRadio
+            authority={siteUserDetail.authority}
+            schoolId={siteUserDetail.schoolId}
+            siteUserAuthority="1"
+            schoolList={schoolList}
+          />
           <div className="p-2">
             <h3>■ ユーザー名</h3>
             <input

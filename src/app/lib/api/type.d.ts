@@ -10,16 +10,20 @@ export type ClassList = {
 };
 
 export type ClassDetail = {
+  classYear: number;
   className: string;
   title: string;
   myOtherClass?: boolean;
   seatsAddColInfo: {
-    seatsInfo: {
-      seatId?: number;
-      seatNumber: number;
-      studentName: string;
-      sexType: string;
-      studentId?: number;
-    }[];
+    col: number;
+    seatsInfo: SeatInfo[];
   }[];
+};
+
+export type SeatInfo = {
+  seatId?: number;
+  seatNumber: number;
+  studentName: string;
+  sexType: string;
+  studentId?: number;
 };

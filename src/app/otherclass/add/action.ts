@@ -9,7 +9,10 @@ export async function formAction(state: ClassList, formData: FormData) {
     className: formData.get("className"),
     title: formData.get("title"),
     siteUserId: 1,
+    schoolId: 1,
   };
+  // schoolIdを指定しない場合は、admin、指定する場合はそれ以外
+
   const response = await getOtherClassList(JSON.stringify(body));
 
   return response;

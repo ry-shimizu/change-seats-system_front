@@ -1,3 +1,6 @@
+import { Authority } from "../../../enum/Authority";
+import { FlagType } from "../../../enum/FlagType";
+
 export type SiteUserDetailList = {
   siteUserDetailList: SiteUserDetail[];
 };
@@ -7,5 +10,7 @@ export type SiteUserDetail = {
   userName: string;
   authority: Authority;
   loginId: string;
-  deleteFlg: DeleteFlg;
+  deleteFlg: FlagType;
+  schoolName: string;
+  schoolId: number;
 };

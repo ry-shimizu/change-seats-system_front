@@ -6,18 +6,20 @@ import { redirect } from "next/navigation";
 
 export async function addFormAction(formData: FormData) {
   const body = {
-    siteUserId: formData.get("siteUserId"),
+    siteUserId: 1,
     classId: formData.get("classId"),
   };
+  // siteUserIdはセッションから取得
   await registerOtherClass(JSON.stringify(body));
   redirect("/otherclass");
 }
 
 export async function deleteFormAction(formData: FormData) {
   const body = {
-    siteUserId: formData.get("siteUserId"),
+    siteUserId: 1,
     classId: formData.get("classId"),
   };
+  // siteUserIdはセッションから取得
   await deleteOtherClass(JSON.stringify(body));
   redirect("/otherclass");
 }
