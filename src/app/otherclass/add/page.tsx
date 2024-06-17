@@ -1,4 +1,5 @@
-import { getOtherClassList } from "@/app/lib/api/otherClass/getOtherClassList";
+import Layout from "@/app/components/Layout";
+import { getOtherClassList } from "@/app/lib/api/otherClass/get-otherclassList";
 import AddTop from "./add-top";
 
 export default async function OtherClassAdd() {
@@ -8,9 +9,8 @@ export default async function OtherClassAdd() {
   // schoolIdを指定しない場合は、admin、指定する場合はそれ以外
 
   return (
-    <div className="w-1/2 overflow-y-auto">
-      <h2 className="font-mono text-3xl mb-2">他クラス登録</h2>
+    <Layout pageTitle="他クラス登録" contentWidth="w-1/2">
       <AddTop otherClassList={otherClassList} />
-    </div>
+    </Layout>
   );
 }

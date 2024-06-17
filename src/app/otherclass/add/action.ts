@@ -1,6 +1,6 @@
 "use server";
 
-import { getOtherClassList } from "@/app/lib/api/otherClass/getOtherClassList";
+import { getOtherClassList } from "@/app/lib/api/otherClass/get-otherclassList";
 import { ClassList } from "@/app/lib/api/type";
 
 export async function formAction(state: ClassList, formData: FormData) {

@@ -1,9 +1,10 @@
 "use client";
 import Button from "@/app/components/Button";
+import Layout from "@/app/components/Layout";
 import { useState } from "react";
 import { formAction } from "./action";
-import SeatNumberImput from "./seatNumber-input";
-import SeatStartRadio from "./seatStart-radio";
+import SeatNumberImput from "./seat-number-input";
+import SeatStartRadio from "./seat-start-radio";
 
 export default function MyClassAdd() {
   const [seatTotal, setSeatTotal] = useState([
@@ -17,8 +18,7 @@ export default function MyClassAdd() {
   ]);
 
   return (
-    <div className="w-1/2">
-      <h2 className="font-mono text-3xl mb-2">マイクラス登録</h2>
+    <Layout pageTitle="マイクラス登録" contentWidth="w-1/2">
       <div className="bg-white rounded-xl w-full p-4">
         <form action={(formData: FormData) => formAction(formData, seatTotal.length)}>
           <div className="p-2">
@@ -26,7 +26,6 @@ export default function MyClassAdd() {
             <input
               type="number"
               name="year"
-              placeholder="年度"
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               min={2023}
               max={9999}
@@ -37,7 +36,7 @@ export default function MyClassAdd() {
             <input
               type="text"
               name="className"
-              placeholder="クラス"
+              placeholder="例）3-1"
               maxLength={10}
               size={20}
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
@@ -48,7 +47,6 @@ export default function MyClassAdd() {
             <input
               type="text"
               name="title"
-              placeholder="タイトル"
               maxLength={20}
               size={40}
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
@@ -63,6 +61,6 @@ export default function MyClassAdd() {
           <Button color="blue" message="登録" paddingXNum={6} justifyEnd />
         </form>
       </div>
-    </div>
+    </Layout>
   );
 }

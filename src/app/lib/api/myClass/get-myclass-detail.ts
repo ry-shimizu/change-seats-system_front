@@ -7,5 +7,7 @@ export async function getMyClassDetail(classId: number, siteUserId: number, scho
     "myClass/detail",
     JSON.stringify({ classId, siteUserId, schoolId })
   );
-  return response.json() as ClassDetail;
+  const classDetail = (await response.json()) as ClassDetail;
+
+  return classDetail;
 }

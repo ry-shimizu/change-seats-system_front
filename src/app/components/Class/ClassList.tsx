@@ -2,6 +2,7 @@ import ClassLabel from "@/app/components/Class/ClassLabel";
 import { ClassList } from "@/app/lib/api/type";
 import dayjs from "dayjs";
 import Link from "next/link";
+import Layout from "../Layout";
 
 export default function ClassList({
   classLabelList,
@@ -27,8 +28,7 @@ export default function ClassList({
   });
 
   return (
-    <div className="w-1/2">
-      <h2 className="font-mono text-3xl mb-2">{pageTitle}</h2>
+    <Layout pageTitle={pageTitle} contentWidth="w-1/2">
       <div className="bg-white rounded-xl w-full h-full items-center flex flex-col p-2">
         {classLabelElement}
       </div>
@@ -40,6 +40,6 @@ export default function ClassList({
           +新規登録
         </Link>
       </div>
-    </div>
+    </Layout>
   );
 }

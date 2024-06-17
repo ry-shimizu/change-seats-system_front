@@ -1,6 +1,7 @@
 import ComfirmModal from "@/app/components/ConfirmModal";
-import { getSchoolList } from "@/app/lib/api/school/getSchoolList";
-import { registerSiteUser } from "@/app/lib/api/siteUser/registerSiteUser";
+import Layout from "@/app/components/Layout";
+import { getSchoolList } from "@/app/lib/api/school/get-schoolList";
+import { registerSiteUser } from "@/app/lib/api/siteUser/register-siteuser";
 import { redirect } from "next/navigation";
 import AuthorityRadio from "../authority-radio";
 
@@ -20,8 +21,7 @@ export default async function UerAdd() {
 
   const schoolList = await getSchoolList();
   return (
-    <div className="w-1/3 overflow-y-auto">
-      <h2 className="font-mono text-3xl mb-2">ユーザー登録画面</h2>
+    <Layout pageTitle="ユーザー登録" contentWidth="w-1/3">
       <div className="bg-white rounded-xl w-full p-4">
         <form action={formAction} name="userAdd">
           <div className="p-2">
@@ -58,6 +58,6 @@ export default async function UerAdd() {
           />
         </form>
       </div>
-    </div>
+    </Layout>
   );
 }

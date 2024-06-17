@@ -1,5 +1,5 @@
 "use server";
-import { searchSiteUser } from "../lib/api/siteUser/searchSiteUser";
+import { searchSiteUser } from "../lib/api/siteUser/search-siteuser";
 import { SiteUserDetailList } from "../lib/api/siteUser/type";
 
 export async function formAction(state: SiteUserDetailList, formData: FormData) {

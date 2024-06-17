@@ -10,7 +10,7 @@ export default function Sidebar() {
     <nav className="h-screen w-1/6 bg-gray-200 fixed top-16 left-0">
       <ul className="text-gray-600 m-auto">
         <div className="mt-16">
-          <SideBarLink IconItem={FaHome} item="Home" path="/" />
+          <SideBarLink IconItem={FaHome} item="Home" path="/top" />
         </div>
         <SideBarLink IconItem={PiChalkboardTeacherLight} item="My classes" path="/myclass" />
         <SideBarLink IconItem={PiChalkboardTeacherFill} item="Other classes" path="/otherclass" />

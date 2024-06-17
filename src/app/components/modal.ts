@@ -6,7 +6,7 @@ export const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    minWidth: "30%",
+    minWidth: "35%",
     maxHeight: "70vh",
   },
   overlay: {

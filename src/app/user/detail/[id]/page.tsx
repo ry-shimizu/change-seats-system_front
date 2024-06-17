@@ -1,8 +1,9 @@
 import ComfirmModal from "@/app/components/ConfirmModal";
-import { getSchoolList } from "@/app/lib/api/school/getSchoolList";
-import { deleteSiteUser } from "@/app/lib/api/siteUser/deleteSiteUser";
-import { getSiteUserDetail } from "@/app/lib/api/siteUser/getSiteUserDetail";
-import { updateSiteUser } from "@/app/lib/api/siteUser/updateSiteUser";
+import Layout from "@/app/components/Layout";
+import { getSchoolList } from "@/app/lib/api/school/get-schoolList";
+import { deleteSiteUser } from "@/app/lib/api/siteUser/delete-siteuser";
+import { getSiteUserDetail } from "@/app/lib/api/siteUser/get-siteuser-detail";
+import { updateSiteUser } from "@/app/lib/api/siteUser/update-siteuser";
 import { redirect } from "next/navigation";
 import AuthorityRadio from "../../authority-radio";
 
@@ -35,8 +36,7 @@ export default async function UserDetail({ params }: { params: { id: number } })
   const schoolList = await getSchoolList();
 
   return (
-    <div className="w-1/3 overflow-y-auto">
-      <h2 className="font-mono text-3xl mb-2">ユーザー詳細画面</h2>
+    <Layout pageTitle="ユーザー詳細" contentWidth="w-1/3">
       <div className="bg-white rounded-xl w-full p-4">
         <form action={updateFormAction} name="userUpdate">
           <div className="p-2">
@@ -90,6 +90,6 @@ export default async function UserDetail({ params }: { params: { id: number } })
         </form>
         <form action={deleteFormAction} name="userDelete"></form>
       </div>
-    </div>
+    </Layout>
   );
 }

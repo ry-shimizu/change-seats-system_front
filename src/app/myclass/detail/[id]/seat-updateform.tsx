@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import { SexType } from "@/app/enum/SexType";
 import { SeatInfo } from "@/app/lib/api/type";
 import { useParams } from "next/navigation";
 import { SetStateAction, useState } from "react";
@@ -16,7 +17,7 @@ export default function SeatUpdateForm({
 }) {
   const [displaySexType, setDisplaySexType] = useState(sexType);
   const handleSexType = (e: { target: { value: SetStateAction<string> } }) => {
-    setDisplaySexType(e.target.value);
+    setDisplaySexType(e.target.value as SexType);
   };
 
   const [isEmptySeat, setIsEmptyseat] = useState(false);

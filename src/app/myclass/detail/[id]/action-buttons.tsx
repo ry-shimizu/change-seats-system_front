@@ -58,7 +58,7 @@ export default function ActionButtons({
         onRequestClose={() => handleClick(setIsChangeOpen, false)}
         style={customStyles}
       >
-        <ChangeSeat seatInfos={seatsInfo} setIsChangeOpen={setIsChangeOpen} />
+        <ChangeSeat seatInfos={seatsInfo} setIsChangeOpen={setIsChangeOpen} classId={classId} />
       </Modal>
 
       <Modal

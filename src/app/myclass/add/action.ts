@@ -1,6 +1,6 @@
 "use server";
 
-import { registerMyClass } from "@/app/lib/api/myClass/registerMyClass";
+import { registerMyClass } from "@/app/lib/api/myClass/register-myclass";
 import { redirect } from "next/navigation";
 
 export const formAction = async (formData: FormData, seatTotal: number) => {

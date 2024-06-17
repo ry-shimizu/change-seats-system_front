@@ -1,6 +1,6 @@
 "use client";
 
-import { BgColor, BorderColor } from "../enum/color";
+import { BgColor, BorderColor } from "../enum/Color";
 
 export default function Button({
   color,

@@ -20,7 +20,7 @@ export default function Header() {
         <div className="container mx-auto">
           <div className="text-2xl font-bold flex">
             <MdEventSeat size="2rem" />
-            <Link className="ml-1" href={"/"}>
+            <Link className="ml-1" href={"/top"}>
               Seats System Manager
             </Link>
           </div>

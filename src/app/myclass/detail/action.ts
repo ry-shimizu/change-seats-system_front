@@ -1,10 +1,12 @@
 "use server";
 
-import { deleteMyClass } from "@/app/lib/api/myClass/deleteMyclass";
-import { deleteSeat } from "@/app/lib/api/myClass/seat/deleteSeat";
-import { regiseterSeat } from "@/app/lib/api/myClass/seat/registerSeat";
-import { updateSeat } from "@/app/lib/api/myClass/seat/updateSeat";
-import { updateMyClassInfo } from "@/app/lib/api/myClass/updateMyClassInfo";
+import { SeatStartPoint } from "@/app/enum/SeatStartPoint";
+import { deleteMyClass } from "@/app/lib/api/myClass/delete-myclass";
+import { changeSeat } from "@/app/lib/api/myClass/seat/change-seat";
+import { deleteSeat } from "@/app/lib/api/myClass/seat/delete-seat";
+import { regiseterSeat } from "@/app/lib/api/myClass/seat/register-seat";
+import { updateSeat } from "@/app/lib/api/myClass/seat/update-seat";
+import { updateMyClassInfo } from "@/app/lib/api/myClass/update-myclassinfo";
 import { redirect } from "next/navigation";
 
 export async function addSeatFormAction(
@@ -93,4 +95,43 @@ export async function updateMyClassFormAction(formData: FormData, classId: numbe
     })
   );
   redirect("/myclass");
+}
+
+export async function changeSeatormAction(
+  formData: FormData,
+  classId: number,
+  enumSeatStartPoint: SeatStartPoint,
+  formDataCount: number,
+  isChangeCondition: boolean
+) {
+  const changeSeatConditionList = [];
+  if (isChangeCondition && formDataCount > 0) {
+    for (let i = 0; i < formDataCount; i++) {
+      const seatId = Number(formData.get(`changeSeatNum${i}`));
+      const changeCondition = {
+        seatId,
+        studentId: Number(formData.get(`studentId${seatId}`)),
+        conditionX: formData.get(`conditionX${i}`),
+        positionXColumn: formData.get(`positionXColumn${i}`)
+          ? Number(formData.get(`positionXColumn${i}`))
+          : null,
+        conditionY: formData.get(`conditionY${i}`),
+        positionYColumn: formData.get(`positionYColumn${i}`)
+          ? Number(formData.get(`positionYColumn${i}`))
+          : null,
+      };
+      changeSeatConditionList.push(changeCondition);
+    }
+  }
+
+  // siteUserIdはセッションから取得
+  return await changeSeat(
+    JSON.stringify({
+      changeSeatConditionList,
+      enumSeatStartPoint,
+      siteUserId: 1,
+      schoolId: 1,
+      classId,
+    })
+  );
 }
