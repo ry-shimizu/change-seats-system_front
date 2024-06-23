@@ -13,7 +13,6 @@ export const formAction = async (formData: FormData, seatTotal: number) => {
       seatNumberList.push({ seatNum: Number(formData.get(`seatTotalber${i}`)) });
     }
   }
-  console.log(seatNumberList);
   params.append("file", formData.get("file") as File);
   params.append(
     "data",
@@ -24,15 +23,12 @@ export const formAction = async (formData: FormData, seatTotal: number) => {
           className: formData.get("className"),
           title: formData.get("title"),
           seatStartPoint: formData.get("seatStartPoint"),
-          schoolId: 1,
-          siteUserId: 1,
           seatNumberList,
         }),
       ],
       { type: "application/json" }
     )
   );
-  // schoolIdとsiteUserId
   registerMyClass(params);
   redirect("/myclass");
 };

@@ -3,9 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose, MdEventSeat } from "react-icons/md";
+import { Authority } from "../enum/Authority";
 import Sidebar from "./Sidebar";
 
-export default function Header() {
+export default function Header({ authority }: { authority?: Authority }) {
   const [open, setOpen] = useState(false);
   const openNavFunction = () => {
     setOpen(!open);
@@ -26,7 +27,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      {open && <Sidebar />}
+      {open && <Sidebar authority={authority} />}
     </>
   );
 }

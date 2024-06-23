@@ -13,7 +13,6 @@ export default async function UserDetail({ params }: { params: { id: number } })
     "use server";
     const rawFormData = {
       updateSiteUserId: params.id,
-      loginSiteUserId: 1,
       loginId: formData.get("loginId"),
       authority: formData.get("authority"),
       userName: formData.get("userName"),

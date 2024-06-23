@@ -5,7 +5,7 @@ import { getMyClassDetail } from "@/app/lib/api/myClass/get-myclass-detail";
 import ActionButtons from "./action-buttons";
 
 export default async function MyclassDetail({ params }: { params: { id: number } }) {
-  const seatsInfo = await getMyClassDetail(params.id, 1, 1);
+  const seatsInfo = await getMyClassDetail(params.id);
   // schoolIdと一致するクラス詳細ではない場合、404エラー
 
   return (

@@ -13,7 +13,7 @@ export default function ClassList({
   pageTitle: string;
   path: string;
 }) {
-  const classLabelElement = classLabelList.classList.map((classLabel) => {
+  const classLabelElement = classLabelList.classList.map((classLabel, index) => {
     return (
       <ClassLabel
         classId={classLabel.classId}
@@ -23,6 +23,7 @@ export default function ClassList({
         studentNum={classLabel.studentNum}
         lastUpdate={dayjs(classLabel.updatedDt).format("YYYY年MM月DD日")}
         isOtherClassFlg={path === "otherclass" ? true : false}
+        key={index}
       />
     );
   });

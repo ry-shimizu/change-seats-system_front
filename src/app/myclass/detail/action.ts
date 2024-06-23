@@ -15,14 +15,12 @@ export async function addSeatFormAction(
   seatNumber: number,
   emptySeat: boolean
 ) {
-  // siteUserIdはセッションから取得
   regiseterSeat(
     JSON.stringify({
       seatNumber,
       studentName: formData.get("studentName"),
       sexType: formData.get("sexType") || "3",
       isEmptySeat: emptySeat,
-      siteUserId: 1,
       classId: Number(classId),
     })
   );
@@ -37,8 +35,6 @@ export async function updateSeatFormAction(
   studentId: number,
   emptySeat: boolean
 ) {
-  // siteUserIdはセッションから取得
-
   updateSeat(
     JSON.stringify({
       seatId,
@@ -46,7 +42,6 @@ export async function updateSeatFormAction(
       studentName: formData.get("studentName"),
       sexType: formData.get("sexType") || "3",
       isEmptySeat: emptySeat,
-      siteUserId: 1,
       classId: Number(classId),
     })
   );
@@ -71,11 +66,8 @@ export async function deleteSeatFormAction(
 }
 
 export async function deleteMyClassFormAction(classId: number) {
-  // siteUserIdはセッションから取得
   deleteMyClass(
     JSON.stringify({
-      siteUserId: 1,
-      schoolId: 1,
       classId,
     })
   );
@@ -83,14 +75,11 @@ export async function deleteMyClassFormAction(classId: number) {
 }
 
 export async function updateMyClassFormAction(formData: FormData, classId: number) {
-  // siteUserIdはセッションから取得
   updateMyClassInfo(
     JSON.stringify({
       title: formData.get("title"),
       className: formData.get("className"),
       classYear: formData.get("classYear"),
-      siteUserId: 1,
-      schoolId: 1,
       classId,
     })
   );
@@ -124,13 +113,10 @@ export async function changeSeatormAction(
     }
   }
 
-  // siteUserIdはセッションから取得
   return await changeSeat(
     JSON.stringify({
       changeSeatConditionList,
       enumSeatStartPoint,
-      siteUserId: 1,
-      schoolId: 1,
       classId,
     })
   );

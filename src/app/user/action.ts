@@ -10,14 +10,12 @@ export async function formAction(state: SiteUserDetailList, formData: FormData) 
     }
   });
   const isAdmin = true;
-  const schoolId = 1;
   const response = await searchSiteUser(
     JSON.stringify({
       loginId: formData.get("loginId"),
       userName: formData.get("userName"),
       schoolName: formData.get("schoolName"),
       authority,
-      schoolId,
       isAdmin,
     })
   );
