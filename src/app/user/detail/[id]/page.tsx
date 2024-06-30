@@ -1,14 +1,19 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import ComfirmModal from "@/app/components/ConfirmModal";
 import Layout from "@/app/components/Layout";
 import { getSchoolList } from "@/app/lib/api/school/get-schoolList";
 import { deleteSiteUser } from "@/app/lib/api/siteUser/delete-siteuser";
 import { getSiteUserDetail } from "@/app/lib/api/siteUser/get-siteuser-detail";
 import { updateSiteUser } from "@/app/lib/api/siteUser/update-siteuser";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import AuthorityRadio from "../../authority-radio";
 
 export default async function UserDetail({ params }: { params: { id: number } }) {
   const siteUserDetail = await getSiteUserDetail(params.id);
+  const userData = await getServerSession(nextAuthOptions);
+  const authority = userData?.user.authority;
+
   const updateFormAction = async (formData: FormData) => {
     "use server";
     const rawFormData = {
@@ -50,7 +55,7 @@ export default async function UserDetail({ params }: { params: { id: number } })
           <AuthorityRadio
             authority={siteUserDetail.authority}
             schoolId={siteUserDetail.schoolId}
-            siteUserAuthority="1"
+            siteUserAuthority={authority}
             schoolList={schoolList}
           />
           <div className="p-2">

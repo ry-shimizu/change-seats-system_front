@@ -1,7 +1,9 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import ComfirmModal from "@/app/components/ConfirmModal";
 import Layout from "@/app/components/Layout";
 import { getSchoolList } from "@/app/lib/api/school/get-schoolList";
 import { registerSiteUser } from "@/app/lib/api/siteUser/register-siteuser";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import AuthorityRadio from "../authority-radio";
 
@@ -20,6 +22,8 @@ export default async function UerAdd() {
   };
 
   const schoolList = await getSchoolList();
+  const userData = await getServerSession(nextAuthOptions);
+  const authority = userData?.user.authority;
   return (
     <Layout pageTitle="ユーザー登録" contentWidth="w-1/3">
       <div className="bg-white rounded-xl w-full p-4">
@@ -32,7 +36,7 @@ export default async function UerAdd() {
               className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             />
           </div>
-          <AuthorityRadio siteUserAuthority="1" schoolList={schoolList} />
+          <AuthorityRadio siteUserAuthority={authority} schoolList={schoolList} />
           <div className="p-2">
             <h3>■ ユーザー名</h3>
             <input

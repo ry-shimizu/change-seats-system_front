@@ -2,17 +2,19 @@
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import Button from "../components/Button";
+import { Authority } from "../enum/Authority";
 import { SiteUserDetailList } from "../lib/api/siteUser/type";
 import { formAction } from "./action";
 import UserTable from "./user-table";
 
 export default function UserTop({
   siteUserDetailList,
+  authority,
 }: {
   siteUserDetailList: SiteUserDetailList;
+  authority?: Authority;
 }) {
   const [tableData, dispatch] = useFormState(formAction, siteUserDetailList);
-  const authority = 1;
   return (
     <>
       <div className="bg-white rounded-xl w-full p-4">
@@ -36,7 +38,7 @@ export default function UserTop({
                 className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
               />
             </div>
-            {authority === 1 && (
+            {authority === "1" && (
               <>
                 <div className="p-2 mx-2">
                   <h3>■ 学校名</h3>
@@ -53,7 +55,7 @@ export default function UserTop({
           <div className="flex">
             <div className="p-2 mx-2">
               <h3>■ 権限</h3>
-              {authority === 1 && (
+              {authority === "1" && (
                 <>
                   <input
                     id="admin"
@@ -114,7 +116,7 @@ export default function UserTop({
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   権限
                 </th>
-                {authority === 1 && (
+                {authority === "1" && (
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     学校名
                   </th>

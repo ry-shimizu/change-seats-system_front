@@ -7,7 +7,7 @@ import { HiMinusCircle, HiPlusCircle } from "react-icons/hi2";
 import { addFormAction, deleteFormAction } from "./action";
 
 export default async function OtherClassDetail({ params }: { params: { id: number } }) {
-  const seatsInfo = await getOtherClassDetail(1, params.id, 1);
+  const seatsInfo = await getOtherClassDetail(params.id);
   // schoolIdと一致するクラス詳細ではない場合、404エラー
 
   return (

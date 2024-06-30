@@ -6,7 +6,7 @@ import Label from "../components/Label";
 
 export default function Login() {
   const searchParam = useSearchParams();
-  const callbackUrl = searchParam.get("callbackUrl") || "top";
+  const callbackUrl = searchParam.get("callbackUrl") || "http://localhost:3000/top";
   return (
     <div className="flex flex-col items-center justify-center">
       <h2 className="font-mono text-3xl mb-3 mt-20">ログイン</h2>

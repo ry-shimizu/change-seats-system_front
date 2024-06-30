@@ -1,4 +1,6 @@
 "use server";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 import { searchSiteUser } from "../lib/api/siteUser/search-siteuser";
 import { SiteUserDetailList } from "../lib/api/siteUser/type";
 
@@ -9,7 +11,10 @@ export async function formAction(state: SiteUserDetailList, formData: FormData) 
       authority.push(value as string);
     }
   });
-  const isAdmin = true;
+  const userData = await getServerSession(nextAuthOptions);
+
+  const isAdmin = userData?.user.authority === "1";
+  console.log(isAdmin);
   const response = await searchSiteUser(
     JSON.stringify({
       loginId: formData.get("loginId"),

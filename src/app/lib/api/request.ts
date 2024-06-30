@@ -21,12 +21,11 @@ export async function request(
         : noUserbody.slice(0, -1) + "," + JSON.stringify(needUserData).slice(1);
   } else if (noUserbody && noUserbody instanceof FormData) {
     body = { ...noUserbody, ...needUserData };
-  } else {
+  } else if (method === "POST") {
     headers["Content-Type"] = "application/json";
     body = JSON.stringify(needUserData);
   }
 
-  console.log(body);
   const response = await fetch(`http://localhost:8080/${path}`, {
     method,
     headers,

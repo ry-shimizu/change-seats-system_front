@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Authority } from "../enum/Authority";
 import { SchoolDetailList } from "../lib/api/school/type";
 
 export default function AuthorityRadio({
@@ -8,12 +9,14 @@ export default function AuthorityRadio({
   schoolId,
   schoolList,
 }: {
-  siteUserAuthority: string;
+  siteUserAuthority?: Authority;
   authority?: string;
   schoolId?: number;
   schoolList?: SchoolDetailList;
 }) {
-  const [authorityValue, setAuthorityValue] = useState(authority || "1");
+  const [authorityValue, setAuthorityValue] = useState(
+    authority || (siteUserAuthority === "1" ? "1" : "2")
+  );
   const [schoolIdValue, setSchoolIdValue] = useState(schoolId || 0);
 
   const handleStartSeatChange = (value: string) => {
