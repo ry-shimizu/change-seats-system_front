@@ -29,6 +29,7 @@ export default function ClassLabel({
       className="border-2 border-gray-200 bg-gray-100 rounded-md w-11/12 my-3 m-4 items-center shadow-xl
 flex transition-transform duration-300 ease-in-out transform hover:scale-105 p-2"
       href={getPath()}
+      key={classId}
     >
       <div className="flex items-center">
         <span className={`${isOtherClassFlg ? "p-2" : "p-4 text-2xl font-bold"}`}>{className}</span>

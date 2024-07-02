@@ -6,7 +6,6 @@ import ActionButtons from "./action-buttons";
 
 export default async function MyclassDetail({ params }: { params: { id: number } }) {
   const seatsInfo = await getMyClassDetail(params.id);
-  // schoolIdと一致するクラス詳細ではない場合、404エラー
 
   return (
     <Layout pageTitle="マイクラス詳細" contentWidth="w-1/2">

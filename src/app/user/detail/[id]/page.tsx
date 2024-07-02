@@ -21,9 +21,9 @@ export default async function UserDetail({ params }: { params: { id: number } })
       loginId: formData.get("loginId"),
       authority: formData.get("authority"),
       userName: formData.get("userName"),
-      password: formData.get("password"),
+      password: formData.get("password") || null,
       schoolId: formData.get("schoolId") || 0,
-    }; // ログイン情報のschoolId
+    };
     updateSiteUser(JSON.stringify(rawFormData));
     redirect("/user");
   };

@@ -8,7 +8,6 @@ import { addFormAction, deleteFormAction } from "./action";
 
 export default async function OtherClassDetail({ params }: { params: { id: number } }) {
   const seatsInfo = await getOtherClassDetail(params.id);
-  // schoolIdと一致するクラス詳細ではない場合、404エラー
 
   return (
     <Layout pageTitle="他クラス詳細" contentWidth="w-1/2">

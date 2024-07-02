@@ -11,15 +11,17 @@ export default function AddTop({ otherClassList }: { otherClassList: ClassList }
   const [tableData, dispatch] = useFormState(formAction, otherClassList);
   const classLabelElement = tableData.classList.map((classLabel) => {
     return (
-      <ClassLabel
-        classId={classLabel.classId}
-        classYear={classLabel.classYear}
-        className={classLabel.className}
-        title={classLabel.title}
-        studentNum={classLabel.studentNum}
-        lastUpdate={dayjs(classLabel.updatedDt).format("YYYY年MM月DD日")}
-        isOtherClassFlg={true}
-      />
+      <span key={classLabel.classId}>
+        <ClassLabel
+          classId={classLabel.classId}
+          classYear={classLabel.classYear}
+          className={classLabel.className}
+          title={classLabel.title}
+          studentNum={classLabel.studentNum}
+          lastUpdate={dayjs(classLabel.updatedDt).format("YYYY年MM月DD日")}
+          isOtherClassFlg={true}
+        />
+      </span>
     );
   });
   return (

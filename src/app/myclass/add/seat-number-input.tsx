@@ -1,13 +1,18 @@
 "use client";
 import Button from "@/app/components/Button";
+import { useState } from "react";
 
-export default function SeatNumberImput({
-  seatTotal,
-  setSeatTotal,
-}: {
-  seatTotal: JSX.Element[];
-  setSeatTotal: (value: JSX.Element[] | ((prevState: JSX.Element[]) => JSX.Element[])) => void;
-}) {
+export default function SeatNumberImput() {
+  const [seatTotal, setSeatTotal] = useState([
+    <input
+      type="number"
+      name="seatTotalber1"
+      className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
+      placeholder="座席数(1列目)"
+      min={1}
+    />,
+  ]);
+
   const handleAddClick = () => {
     const inputCount = seatTotal.length + 1;
     const addInputElement = (
@@ -56,6 +61,7 @@ export default function SeatNumberImput({
           />
         )}
       </div>
+      <input type="hidden" name="seatTotal" value={seatTotal.length} />
     </div>
   );
 }

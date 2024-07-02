@@ -11,19 +11,24 @@ export async function request(
     accept: "application/json",
   };
   let body: string | FormData | undefined;
-  const userData = await getServerSession(nextAuthOptions);
-  const needUserData = { siteUserId: userData?.user.siteUserId, schoolId: userData?.user.schoolId };
-  if (noUserbody && !(noUserbody instanceof FormData)) {
-    headers["Content-Type"] = "application/json";
-    body =
-      path === "login"
-        ? noUserbody
-        : noUserbody.slice(0, -1) + "," + JSON.stringify(needUserData).slice(1);
-  } else if (noUserbody && noUserbody instanceof FormData) {
-    body = { ...noUserbody, ...needUserData };
-  } else if (method === "POST") {
-    headers["Content-Type"] = "application/json";
-    body = JSON.stringify(needUserData);
+  if (noUserbody && noUserbody instanceof FormData) {
+    body = noUserbody;
+  } else {
+    const userData = await getServerSession(nextAuthOptions);
+    const needUserData = {
+      siteUserId: userData?.user.siteUserId,
+      schoolId: userData?.user.schoolId,
+    };
+    if (noUserbody) {
+      headers["Content-Type"] = "application/json";
+      body =
+        path === "login"
+          ? noUserbody
+          : noUserbody.slice(0, -1) + "," + JSON.stringify(needUserData).slice(1);
+    } else if (method === "POST") {
+      headers["Content-Type"] = "application/json";
+      body = JSON.stringify(needUserData);
+    }
   }
 
   const response = await fetch(`http://localhost:8080/${path}`, {
