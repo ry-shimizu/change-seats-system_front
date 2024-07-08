@@ -17,10 +17,3 @@ export const customStyles = {
 export const handleClick = (setIsOpen: (value: boolean) => void, isOpen: boolean) => {
   setIsOpen(isOpen);
 };
-
-export const handleFormSubmit = (formName?: string) => {
-  if (formName) {
-    var form = document.forms.namedItem(formName);
-    form && form.requestSubmit();
-  }
-};

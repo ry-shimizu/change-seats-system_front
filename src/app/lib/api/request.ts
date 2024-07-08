@@ -42,9 +42,8 @@ export async function request(
     redirect("/not-found");
   }
 
-  if (!response.ok) {
-    throw new Error("");
+  if (response.ok || response.status === 400 || response.status === 422) {
+    return response;
   }
-
-  return response;
+  throw new Error();
 }

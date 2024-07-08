@@ -14,7 +14,6 @@ export async function formAction(state: SiteUserDetailList, formData: FormData) 
   const userData = await getServerSession(nextAuthOptions);
 
   const isAdmin = userData?.user.authority === "1";
-  console.log(isAdmin);
   const response = await searchSiteUser(
     JSON.stringify({
       loginId: formData.get("loginId"),

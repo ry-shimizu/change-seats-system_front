@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { UseFormRegister } from "react-hook-form";
 import { Authority } from "../enum/Authority";
 import { SchoolDetailList } from "../lib/api/school/type";
 
@@ -8,17 +9,25 @@ export default function AuthorityRadio({
   authority,
   schoolId,
   schoolList,
+  register,
 }: {
   siteUserAuthority?: Authority;
   authority?: string;
   schoolId?: number;
   schoolList?: SchoolDetailList;
+  register: UseFormRegister<{
+    loginId: string;
+    userName: string;
+    password: string | null;
+    authority: string;
+    registerSchoolId: number;
+    updateSiteUserId?: number;
+  }>;
 }) {
   const [authorityValue, setAuthorityValue] = useState(
     authority || (siteUserAuthority === "1" ? "1" : "2")
   );
   const [schoolIdValue, setSchoolIdValue] = useState(schoolId || 0);
-
   const handleStartSeatChange = (value: string) => {
     setAuthorityValue(value);
   };
@@ -42,6 +51,7 @@ export default function AuthorityRadio({
         {siteUserAuthority === "1" && (
           <>
             <input
+              {...register("authority")}
               id="admin"
               type="radio"
               name="authority"
@@ -55,6 +65,7 @@ export default function AuthorityRadio({
           </>
         )}
         <input
+          {...register("authority")}
           id="general"
           type="radio"
           name="authority"
@@ -66,6 +77,7 @@ export default function AuthorityRadio({
           General
         </label>
         <input
+          {...register("authority")}
           id="schoolAdmin"
           type="radio"
           name="authority"
@@ -81,7 +93,8 @@ export default function AuthorityRadio({
         <div className="p-2">
           <h3>■ 学校</h3>
           <select
-            name="schoolId"
+            id="registerSchoolId"
+            {...register("registerSchoolId")}
             autoComplete="on"
             className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
             onChange={(e) => {
