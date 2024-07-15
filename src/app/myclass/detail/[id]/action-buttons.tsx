@@ -1,13 +1,14 @@
 "use client";
 
+import ModalContent from "@/app/components/ModalContent";
 import { customStyles, handleClick } from "@/app/components/modal";
 import { ClassDetail } from "@/app/lib/api/type";
 import { useState } from "react";
 import { HiMinusCircle, HiPlusCircle } from "react-icons/hi2";
 import { MdChangeCircle } from "react-icons/md";
 import Modal from "react-modal";
+import { deleteMyClassFormAction } from "../action";
 import ChangeSeat from "./change-seat";
-import DeleteClass from "./delete-class";
 import UpdateClass from "./update-class";
 
 export default function ActionButtons({
@@ -67,7 +68,10 @@ export default function ActionButtons({
         onRequestClose={() => handleClick(setIsDeleteOpen, false)}
         style={customStyles}
       >
-        <DeleteClass setIsDeleteOpen={setIsDeleteOpen} classId={classId} />
+        <ModalContent
+          setIsDeleteOpen={setIsDeleteOpen}
+          formAcition={() => deleteMyClassFormAction(classId)}
+        />
       </Modal>
     </>
   );

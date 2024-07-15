@@ -1,10 +1,14 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import ModalContent from "@/app/components/ModalContent";
+import { customStyles, handleClick } from "@/app/components/modal";
 import { Authority } from "@/app/enum/Authority";
 import { SchoolDetailList } from "@/app/lib/api/school/type";
 import { SiteUserDetail } from "@/app/lib/api/siteUser/type";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Modal from "react-modal";
 import AuthorityRadio from "../../authority-radio";
 import { deleteFormAction, updateFormAction } from "./action";
 
@@ -22,6 +26,8 @@ export default function UpdateForm({
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
+    watch,
   } = useForm<{
     loginId: string;
     userName: string;
@@ -30,21 +36,23 @@ export default function UpdateForm({
     registerSchoolId: number;
     updateSiteUserId?: number;
   }>();
+
+  Modal.setAppElement("#app");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+
   return (
     <div className="flex">
       <form
         onSubmit={handleSubmit(async (data) => {
-          data.updateSiteUserId = siteUserDetail.id;
+          setValue("updateSiteUserId", siteUserDetail.id);
           if (data.password === "") {
-            data.password = null;
+            setValue("password", null);
           }
           if (!data.registerSchoolId) {
-            data.registerSchoolId = 0;
+            setValue("registerSchoolId", 0);
           }
-          const response = await updateFormAction(JSON.stringify(data));
-          if (response.errorMessage) {
-            setError("loginId", { message: response.errorMessage, type: "validate" });
-          }
+          setIsUpdateOpen(true);
         })}
         className="w-4/5"
       >
@@ -55,7 +63,7 @@ export default function UpdateForm({
             id="loginId"
             {...register("loginId", {
               required: "ログインIDは必須です。",
-              maxLength: { value: 50, message: "30文字以内で入力してください。" },
+              maxLength: { value: 30, message: "30文字以内で入力してください。" },
               pattern: {
                 value: /^[a-zA-Z0-9-]*$/,
                 message: "半角英数字-(ハイフン)のみで入力してください。",
@@ -106,12 +114,40 @@ export default function UpdateForm({
         </div>
         <Button color="blue" message="更新" paddingXNum={2} justifyEnd />
       </form>
-      <form
-        action={() => deleteFormAction(JSON.stringify({ id: siteUserDetail.id }))}
-        className="mt-auto ml-auto"
+
+      <Modal
+        isOpen={isUpdateOpen}
+        onRequestClose={() => handleClick(setIsUpdateOpen, false)}
+        style={customStyles}
       >
-        <Button color="red" message="削除" paddingXNum={2} justifyEnd />
-      </form>
+        <ModalContent
+          setIsDeleteOpen={setIsUpdateOpen}
+          formAcition={() => updateFormAction(JSON.stringify(watch()))}
+          isUpdate
+          setError={setError}
+        />
+      </Modal>
+
+      <Modal
+        isOpen={isDeleteOpen}
+        onRequestClose={() => handleClick(setIsDeleteOpen, false)}
+        style={customStyles}
+      >
+        <ModalContent
+          setIsDeleteOpen={setIsDeleteOpen}
+          formAcition={() => deleteFormAction(JSON.stringify({ id: siteUserDetail.id }))}
+        />
+      </Modal>
+
+      <div className="mt-auto ml-auto">
+        <Button
+          color="red"
+          message="削除"
+          paddingXNum={2}
+          justifyEnd
+          handleClick={() => handleClick(setIsDeleteOpen, true)}
+        />
+      </div>
     </div>
   );
 }
