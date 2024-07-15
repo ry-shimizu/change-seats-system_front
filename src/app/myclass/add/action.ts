@@ -5,7 +5,7 @@ import { registerMyClass } from "@/app/lib/api/myClass/register-myclass";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-export const formAction = async (formData: FormData) => {
+export async function formAction(formData: FormData) {
   "use server";
   const params = new FormData();
   const seatNumberList = [];
@@ -36,6 +36,9 @@ export const formAction = async (formData: FormData) => {
       { type: "application/json" }
     )
   );
-  registerMyClass(params);
+  const response = await registerMyClass(params);
+  if (!response.ok) {
+    return (await response.json()) as { errorMessage?: string };
+  }
   redirect("/myclass");
-};
+}

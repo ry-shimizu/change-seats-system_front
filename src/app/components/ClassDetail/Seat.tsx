@@ -1,7 +1,7 @@
 "use client";
 
 import { ClassDetail, SeatInfo } from "@/app/lib/api/type";
-import SeatUpdateForm from "@/app/myclass/detail/[id]/seat-updateform";
+import UpdateSeat from "@/app/myclass/detail/[id]/update-seat";
 import { useState } from "react";
 import Modal from "react-modal";
 import { customStyles, handleClick } from "../modal";
@@ -9,9 +9,11 @@ import { customStyles, handleClick } from "../modal";
 export default function Seat({
   seatsInfo,
   isOtherClassPage,
+  isChange = false,
 }: {
   seatsInfo: ClassDetail;
   isOtherClassPage?: boolean;
+  isChange?: boolean;
 }) {
   Modal.setAppElement("#app");
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +26,7 @@ export default function Seat({
         onRequestClose={() => handleClick(setIsOpen, false)}
         style={customStyles}
       >
-        <SeatUpdateForm seatInfo={seatInfo} handleClick={() => handleClick(setIsOpen, false)} />
+        <UpdateSeat seatInfo={seatInfo} handleClick={() => handleClick(setIsOpen, false)} />
       </Modal>
       {seatsInfo.seatsAddColInfo.map((seatAddColInfo, index) => {
         return (
@@ -39,12 +41,12 @@ export default function Seat({
                         ? "bg-red-100/90"
                         : "bg-gray-100/90"
                   } aspect-square w-14 h-14 border border-white m-2 p-1 items-center justify-center flex text-xs shadow-xl rounded-md ${
-                    isOtherClassPage || "cursor-pointer duration-300 hover:scale-110"
+                    isOtherClassPage || isChange || "cursor-pointer duration-300 hover:scale-110"
                   }`}
                   key={index}
                   onClick={() => {
-                    isOtherClassPage || setSeatInfo(seatInfo);
-                    isOtherClassPage || handleClick(setIsOpen, true);
+                    isOtherClassPage || isChange || setSeatInfo(seatInfo);
+                    isOtherClassPage || isChange || handleClick(setIsOpen, true);
                   }}
                 >
                   <span className="flex items-center justify-center w-full h-full">

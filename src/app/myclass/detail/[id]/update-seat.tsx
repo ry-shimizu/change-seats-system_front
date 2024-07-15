@@ -5,10 +5,11 @@ import { SexType } from "@/app/enum/SexType";
 import { SeatInfo } from "@/app/lib/api/type";
 import { useParams } from "next/navigation";
 import { SetStateAction, useState } from "react";
+import { useForm } from "react-hook-form";
 import { addSeatFormAction, deleteSeatFormAction, updateSeatFormAction } from "../action";
 import XButton from "./x-button";
 
-export default function SeatUpdateForm({
+export default function UpdateSeat({
   seatInfo: { seatNumber, studentName, sexType, seatId, studentId },
   handleClick,
 }: {
@@ -24,7 +25,6 @@ export default function SeatUpdateForm({
   const handleEmptyseat = () => {
     setIsEmptyseat(!isEmptySeat);
   };
-  const [displayStudentName, setDisplayStudentName] = useState(studentName);
 
   const [isRegister, setIsRegister] = useState(false);
   const handleRegister = () => {
@@ -32,13 +32,26 @@ export default function SeatUpdateForm({
   };
 
   const params = useParams();
+
+  const {
+    formState: { errors },
+    trigger,
+    register,
+  } = useForm<{
+    studentName: string;
+  }>();
+
   return (
-    <>
+    <div>
       <XButton handleClick={handleClick} />
       <h3 className="text-2xl font-bold text-gray-800 mb-4">座席情報変更</h3>
       <div className="grid grid-cols-4 gap-1">
         <form
           action={(formData: FormData) => {
+            if (!isEmptySeat && !formData.get("studentName")) {
+              trigger();
+              return;
+            }
             isRegister
               ? addSeatFormAction(formData, params["id"] as string, seatNumber, isEmptySeat)
               : updateSeatFormAction(
@@ -56,15 +69,21 @@ export default function SeatUpdateForm({
             <h3>■生徒名</h3>
             <input
               type="text"
-              name="studentName"
+              id="studentName"
               placeholder="生徒名"
               disabled={isEmptySeat}
               maxLength={6}
               size={20}
               className="border-2 rounded-md mt-1 focus:outline-none focus:shadow-outline hover:border-gray-500"
-              value={displayStudentName}
-              onChange={(e) => setDisplayStudentName(e.target.value)}
+              defaultValue={studentName}
+              {...register("studentName", {
+                required: "生徒名は必須です。",
+                max: { value: 6, message: "生徒名は6文字以下で入力してください。" },
+              })}
             />
+            {errors.studentName && (
+              <div className="text-red-500 text-xs">{errors.studentName.message}</div>
+            )}
           </div>
           <div className="p-2">
             <h3>■性別</h3>
@@ -143,6 +162,6 @@ export default function SeatUpdateForm({
           </form>
         )}
       </div>
-    </>
+    </div>
   );
 }

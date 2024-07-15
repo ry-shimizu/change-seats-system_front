@@ -1,10 +1,29 @@
 "use client";
 import Button from "@/app/components/Button";
 import { useState } from "react";
+import { FieldError, UseFormRegister } from "react-hook-form";
 
-export default function SeatNumberImput() {
+export default function SeatNumberImput({
+  register,
+  error,
+}: {
+  register: UseFormRegister<{
+    year: number;
+    className: string;
+    title: string;
+    seatStartPoint: string;
+    file: File;
+    seatTotalber1: number;
+  }>;
+  error?: FieldError;
+}) {
   const [seatTotal, setSeatTotal] = useState([
     <input
+      {...register("seatTotalber1", {
+        required: "座席数(1列目)は必須です。",
+        min: { value: 1, message: "1以上を入力してください。" },
+        max: { value: 9, message: "8以下を入力してください。" },
+      })}
       type="number"
       name="seatTotalber1"
       className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
@@ -17,6 +36,10 @@ export default function SeatNumberImput() {
     const inputCount = seatTotal.length + 1;
     const addInputElement = (
       <input
+        {...register("seatTotalber1", {
+          min: { value: 1, message: "1以上を入力してください。" },
+          max: { value: 9, message: "8以下を入力してください。" },
+        })}
         type="number"
         name={`seatTotalber${inputCount}`}
         className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
@@ -61,6 +84,7 @@ export default function SeatNumberImput() {
           />
         )}
       </div>
+      {error && <div className="text-red-500 text-xs mt-2">{error.message}</div>}
       <input type="hidden" name="seatTotal" value={seatTotal.length} />
     </div>
   );

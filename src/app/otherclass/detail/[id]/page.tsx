@@ -1,9 +1,8 @@
+import Button from "@/app/components/Button";
 import BlackBoard from "@/app/components/ClassDetail/BlackBoard";
 import Seat from "@/app/components/ClassDetail/Seat";
-import ConfirmModal from "@/app/components/ConfirmModal";
 import Layout from "@/app/components/Layout";
 import { getOtherClassDetail } from "@/app/lib/api/otherClass/get-otherclass-detail";
-import { HiMinusCircle, HiPlusCircle } from "react-icons/hi2";
 import { addFormAction, deleteFormAction } from "./action";
 
 export default async function OtherClassDetail({ params }: { params: { id: number } }) {
@@ -18,30 +17,26 @@ export default async function OtherClassDetail({ params }: { params: { id: numbe
 
         <div className="mt-5 flex justify-end">
           <div className="flex px-1 cursor-pointer duration-300 hover:scale-110">
-            <form action={addFormAction} name="otherClassAdd">
-              <input type="hidden" name="classId" value={params.id} />
-            </form>
-            <form action={deleteFormAction} name="otherClassDlete">
-              <input type="hidden" name="classId" value={params.id} />
-            </form>
             {seatsInfo.myOtherClass ? (
-              <ConfirmModal
-                buttonMessage="削除"
-                modalButtonMessage={<HiMinusCircle size="2.5rem" color="#ef4444" />}
-                buttonColor="red"
-                contentMessage="削除しますか？"
-                title="削除確認"
-                formName="otherClassDlete"
-              />
+              <form
+                action={async () => {
+                  "use server";
+                  await deleteFormAction(JSON.stringify({ classId: params.id }));
+                }}
+                className="mt-auto ml-auto"
+              >
+                <Button color="red" message="削除" paddingXNum={2} justifyEnd />
+              </form>
             ) : (
-              <ConfirmModal
-                buttonMessage="登録"
-                modalButtonMessage={<HiPlusCircle size="2.5rem" color="#75A9FF" />}
-                buttonColor="blue"
-                contentMessage="登録しますか？"
-                title="登録確認"
-                formName="otherClassAdd"
-              />
+              <form
+                action={async () => {
+                  "use server";
+                  await addFormAction(JSON.stringify({ classId: params.id }));
+                }}
+                className="mt-auto ml-auto"
+              >
+                <Button color="blue" message="登録" paddingXNum={2} justifyEnd />
+              </form>
             )}
           </div>
         </div>

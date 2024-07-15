@@ -20,6 +20,7 @@ export default function ChangeSeat({
 }) {
   const [isChangeCondition, setIsChangeCondition] = useState(false);
   const [seatInfoState, setSeatInfoState] = useState<ClassDetail>(seatInfos);
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   const handlesetIsChangeCondition = (e: { target: { checked: boolean } }) => {
     e.target.checked && seatChangeTotal.length === 0 && setSeatChangeTotal([""]);
@@ -92,7 +93,7 @@ export default function ChangeSeat({
     setSeatChangeTotal(updatedseatTotal);
   };
 
-  const changeCondition = seatChangeTotal.map((value, index) => {
+  const changeCondition = seatChangeTotal.map((_, index) => {
     return (
       <div key={index} className="mb-2 flex items-center">
         <select
@@ -100,7 +101,6 @@ export default function ChangeSeat({
           id={`changeSeatNum${index}`}
           className="appearance-none h-1/2 bg-white border border-gray-300 hover:border-gray-500 p-1 rounded leading-tight focus:outline-none focus:shadow-outline overflow-y-auto"
         >
-          <option id="changeSeatNumDefault">選択してください ▽</option>
           {changePullDown}
         </select>
         <div className="flex flex-col p-2">
@@ -119,7 +119,6 @@ export default function ChangeSeat({
               id={`positionYColumn${index}`}
               className="appearance-none bg-white border border-gray-300 hover:border-gray-500 p-1 rounded leading-tight focus:outline-none focus:shadow-outline overflow-y-auto"
             >
-              <option>{""}</option>
               {linePullDown}
             </select>
             <span className="p-1">列目まで</span>
@@ -140,7 +139,6 @@ export default function ChangeSeat({
               id={`positionXColumn${index}`}
               className="appearance-none bg-white border border-gray-300 hover:border-gray-500 p-1 rounded leading-tight focus:outline-none focus:shadow-outline overflow-y-auto"
             >
-              <option>{""}</option>
               {colPullDown}
             </select>
             <span className="p-1">列目まで</span>
@@ -193,7 +191,7 @@ export default function ChangeSeat({
       <XButton handleClick={() => handleClick(setIsChangeOpen, false)} />
       <h2 className="text-2xl font-bold text-gray-800 mb-4">席替え</h2>
       <BlackBoard>
-        <Seat seatsInfo={seatInfoState} />
+        <Seat seatsInfo={seatInfoState} isChange />
       </BlackBoard>
       <input
         id="isChangeConditions"
@@ -207,7 +205,6 @@ export default function ChangeSeat({
       </label>
       <form
         action={async (formData: FormData) => {
-          // 同じ人は選べないようにする
           const response = await changeSeatormAction(
             formData,
             classId,
@@ -215,8 +212,14 @@ export default function ChangeSeat({
             changeCondition.length,
             isChangeCondition
           );
+          if (typeof response === "string") {
+            setSelectedStudent(response);
+            return;
+          }
+
           setSeatChangeTotal([""]);
-          setSeatInfoState(response);
+          setSelectedStudent("");
+          setSeatInfoState(response as ClassDetail);
         }}
         className=" mt-2"
       >
@@ -245,6 +248,7 @@ export default function ChangeSeat({
                 />
               )}
             </div>
+            {selectedStudent && <div className="text-red-500 text-sm mt-3">{selectedStudent}</div>}
           </>
         )}
         <div className="mt-5 flex justify-end">

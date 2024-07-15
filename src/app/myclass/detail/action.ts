@@ -74,15 +74,8 @@ export async function deleteMyClassFormAction(classId: number) {
   redirect("/myclass");
 }
 
-export async function updateMyClassFormAction(formData: FormData, classId: number) {
-  updateMyClassInfo(
-    JSON.stringify({
-      title: formData.get("title"),
-      className: formData.get("className"),
-      classYear: formData.get("classYear"),
-      classId,
-    })
-  );
+export async function updateMyClassFormAction(formData: string) {
+  updateMyClassInfo(formData);
   redirect("/myclass");
 }
 
@@ -94,9 +87,16 @@ export async function changeSeatormAction(
   isChangeCondition: boolean
 ) {
   const changeSeatConditionList = [];
+  const seatIds = new Set();
   if (isChangeCondition && formDataCount > 0) {
     for (let i = 0; i < formDataCount; i++) {
       const seatId = Number(formData.get(`changeSeatNum${i}`));
+      if (seatIds.has(seatId)) {
+        return "エラー：生徒が重複しています。" as string;
+      }
+
+      seatIds.add(seatId);
+
       const changeCondition = {
         seatId,
         studentId: Number(formData.get(`studentId${seatId}`)),

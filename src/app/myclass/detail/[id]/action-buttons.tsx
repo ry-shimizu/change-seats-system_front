@@ -1,15 +1,14 @@
 "use client";
 
-import ConfirmModal from "@/app/components/ConfirmModal";
 import { customStyles, handleClick } from "@/app/components/modal";
 import { ClassDetail } from "@/app/lib/api/type";
 import { useState } from "react";
 import { HiMinusCircle, HiPlusCircle } from "react-icons/hi2";
 import { MdChangeCircle } from "react-icons/md";
 import Modal from "react-modal";
-import { deleteMyClassFormAction } from "../action";
 import ChangeSeat from "./change-seat";
-import UpdateClassInfo from "./update-classinfo";
+import DeleteClass from "./delete-class";
+import UpdateClass from "./update-class";
 
 export default function ActionButtons({
   seatsInfo,
@@ -19,18 +18,13 @@ export default function ActionButtons({
   classId: number;
 }) {
   const [isChangeOpen, setIsChangeOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
 
   Modal.setAppElement("#app");
 
   return (
     <>
-      <form
-        action={() => {
-          deleteMyClassFormAction(classId);
-        }}
-        name="deleteMyClass"
-      ></form>
       <div className="mt-5 flex justify-end">
         <div
           className="flex px-1 cursor-pointer duration-300 hover:scale-110"
@@ -44,14 +38,13 @@ export default function ActionButtons({
         >
           <HiPlusCircle size="2.5rem" color="#3b82f6" />
         </div>
-        <ConfirmModal
-          buttonMessage="削除"
-          modalButtonMessage={<HiMinusCircle size="2.5rem" color="#ef4444" />}
-          buttonColor="red"
-          contentMessage="このクラスを削除しますか？"
-          title="クラス削除確認"
-          formName="deleteMyClass"
-        />
+
+        <div
+          className="flex px-1 cursor-pointer duration-300 hover:scale-110"
+          onClick={() => handleClick(setIsDeleteOpen, true)}
+        >
+          <HiMinusCircle size="2.5rem" color="#ef4444" />
+        </div>
       </div>
       <Modal
         isOpen={isChangeOpen}
@@ -66,11 +59,15 @@ export default function ActionButtons({
         onRequestClose={() => handleClick(setIsUpdateOpen, false)}
         style={customStyles}
       >
-        <UpdateClassInfo
-          seatInfos={seatsInfo}
-          setIsUpdateOpen={setIsUpdateOpen}
-          classId={classId}
-        />
+        <UpdateClass seatInfos={seatsInfo} setIsUpdateOpen={setIsUpdateOpen} classId={classId} />
+      </Modal>
+
+      <Modal
+        isOpen={isDeleteOpen}
+        onRequestClose={() => handleClick(setIsDeleteOpen, false)}
+        style={customStyles}
+      >
+        <DeleteClass setIsDeleteOpen={setIsDeleteOpen} classId={classId} />
       </Modal>
     </>
   );

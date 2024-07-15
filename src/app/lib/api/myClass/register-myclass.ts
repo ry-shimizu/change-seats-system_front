@@ -1,5 +1,5 @@
 import { request } from "../request";
 
 export async function registerMyClass(formData: FormData) {
-  await request("POST", "myClass/register", formData);
+  return await request("POST", "myClass/register", formData);
 }

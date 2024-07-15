@@ -6,7 +6,6 @@ export default async function OtherClassAdd() {
   const otherClassList = await getOtherClassList(
     JSON.stringify({ classYear: null, className: null, title: null })
   );
-  // schoolIdを指定しない場合は、admin、指定する場合はそれ以外
 
   return (
     <Layout pageTitle="他クラス登録" contentWidth="w-1/2">
