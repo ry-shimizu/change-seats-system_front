@@ -49,9 +49,7 @@ export default function Seat({
                     isOtherClassPage || isChange || handleClick(setIsOpen, true);
                   }}
                 >
-                  <span className="flex items-center justify-center w-full h-full">
-                    {seatInfo.studentName}
-                  </span>
+                  {seatInfo.studentName}
                 </div>
               );
             })}
