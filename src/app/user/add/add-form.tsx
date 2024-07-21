@@ -10,15 +10,18 @@ import { formAction } from "./action";
 export default function AddForm({
   authority,
   schoolList,
+  schoolId,
 }: {
   authority?: Authority;
   schoolList: SchoolDetailList;
+  schoolId?: number;
 }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
+    setValue,
   } = useForm<{
     loginId: string;
     userName: string;
@@ -29,12 +32,18 @@ export default function AddForm({
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
-        if (!data.registerSchoolId) {
-          data.registerSchoolId = 0;
+        if (!data.registerSchoolId && authority === "1") {
+          setValue("registerSchoolId", 0);
+        } else {
+          if (schoolId) {
+            setValue("registerSchoolId", schoolId);
+          }
         }
         const response = await formAction(JSON.stringify(data));
-        if (response.errorMessage) {
-          setError("loginId", { message: response.errorMessage, type: "validate" });
+        if (response) {
+          if (response.errorMessage) {
+            setError("loginId", { message: response.errorMessage, type: "validate" });
+          }
         }
       })}
     >
@@ -85,6 +94,10 @@ export default function AddForm({
           })}
           className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
         />
+        <div className="text-xs text-gray-300">・10文字以上</div>
+        <div className="text-xs text-gray-300 mb-2">
+          ・半角英大文字小文字、数字をそれぞれ最低1文字ずつ
+        </div>
         {errors.password && <div className="text-red-500 text-xs">{errors.password.message}</div>}
       </div>
       <Button color="blue" message="登録" paddingXNum={2} justifyEnd />

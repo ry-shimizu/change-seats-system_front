@@ -49,8 +49,12 @@ export default function UpdateForm({
           if (data.password === "") {
             setValue("password", null);
           }
-          if (!data.registerSchoolId) {
+          if (!data.registerSchoolId && authority === "1") {
             setValue("registerSchoolId", 0);
+          } else {
+            if (siteUserDetail.schoolId) {
+              setValue("registerSchoolId", siteUserDetail.schoolId);
+            }
           }
           setIsUpdateOpen(true);
         })}
@@ -110,6 +114,10 @@ export default function UpdateForm({
             })}
             className="border-2 rounded-md focus:outline-none focus:shadow-outline hover:border-gray-500"
           />
+          <div className="text-xs text-gray-300">・10文字以上</div>
+          <div className="text-xs text-gray-300 mb-2">
+            ・半角英大文字小文字、数字をそれぞれ最低1文字ずつ
+          </div>
           {errors.password && <div className="text-red-500 text-xs">{errors.password.message}</div>}
         </div>
         <Button color="blue" message="更新" paddingXNum={2} justifyEnd />
